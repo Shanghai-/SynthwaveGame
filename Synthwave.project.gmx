@@ -24,7 +24,7 @@
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objEnemy</object>
-    <object>objects\objRoomInit</object
+    <object>objects\objRoomInit</object>
     <object>objects\objHurtbox</object>
     <object>objects\objSpot</object>
   </objects>
