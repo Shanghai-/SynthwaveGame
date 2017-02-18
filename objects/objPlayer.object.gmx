@@ -8,6 +8,31 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>moving_left = false;
+moving_right = false;
+next_spot_index = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
@@ -25,17 +50,34 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (keyboard_check(vk_right)) {
-    right = true;
+            <string>if (!moving_left &amp;&amp; !moving_right) {
+    if (keyboard_check(vk_right) &amp;&amp; spot_index &lt; 5) {
+        moving_right = true;
+        next_spot_index = spot_index + 1;
+        show_debug_message(next_spot_index);
+        next_spot = global.spot_array[next_spot_index];
+        hspeed = 20;   
+    
+    } else if (keyboard_check(vk_left) &amp;&amp; spot_index &gt; 0) {
+        moving_left = true;
+        next_spot_index = spot_index - 1;
+        show_debug_message(next_spot_index);
+        next_spot = global.spot_array[next_spot_index];
+        hspeed = -20;  
+    }
 } else {
-    right = false;
+    if (moving_right &amp;&amp; x &gt;= next_spot.x) {
+        moving_right = false;
+        hspeed = 0;
+        spot_index = next_spot_index;
+    } else if (moving_left &amp;&amp; x &lt;= next_spot.x) {
+        moving_left = false;
+        hspeed = 0;
+        spot_index = next_spot_index;
+    }
 }
 
-if (keyboard_check(vk_left)) {
-    left = true;
-} else {
-    left = false;
-}
+
 </string>
           </argument>
         </arguments>
