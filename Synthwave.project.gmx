@@ -18,7 +18,7 @@
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objEnemy</object>
-    <object>objects\objGround</object>
+    <object>objects\objRoomInit</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>
