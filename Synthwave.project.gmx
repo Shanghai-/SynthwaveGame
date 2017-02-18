@@ -17,6 +17,9 @@
     <object>objects\objEnemy</object>
     <object>objects\objGround</object>
   </objects>
+  <rooms name="rooms">
+    <room>rooms\rmMainMenu</room>
+  </rooms>
   <help>
     <rtf>help.rtf</rtf>
   </help>
