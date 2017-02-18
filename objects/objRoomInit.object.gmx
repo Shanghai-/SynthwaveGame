@@ -27,9 +27,10 @@
             <kind>1</kind>
             <string>//global.spacing = floor(room_width / global.spaces);
 var spot_queue = ds_priority_create();
-with objSpot {
+with (objSpot) {
     show_debug_message(self.id);
-    ds_priority_add(spot_queue, self, x)
+    show_debug_message(x);
+    ds_priority_add(spot_queue, self.id, x);
 }
 
 var spot_array; 
@@ -40,6 +41,10 @@ for (i = 0; !ds_priority_empty(spot_queue); i += 1) {
 
 global.spot_array = spot_array;
 show_debug_message(global.spot_array);
+var player_spot = global.spot_array[0];
+show_debug_message(player_spot.x);
+show_debug_message(player_spot.y);
+instance_create(player_spot.x, player_spot.y, objPlayer);
 </string>
           </argument>
         </arguments>
