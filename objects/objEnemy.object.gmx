@@ -54,6 +54,7 @@ space = global.spot_array[position];
 attack_direction = -1;
 range = 0;
 hurtbox = noone;
+image_speed = 0;
 </string>
           </argument>
         </arguments>
