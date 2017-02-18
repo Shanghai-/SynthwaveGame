@@ -4,11 +4,16 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sounds name="Music">
+      <sound>sound\click</sound>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprPlayer</sprite>
     <sprite>sprites\sprEnemy</sprite>
     <sprite>sprites\sprForeground</sprite>
+    <sprite>sprites\sprHurtbox</sprite>
     <sprite>sprites\sprSpot</sprite>
   </sprites>
   <backgrounds name="background"/>
@@ -20,6 +25,7 @@
     <object>objects\objPlayer</object>
     <object>objects\objEnemy</object>
     <object>objects\objRoomInit</object>
+    <object>objects\objHurtbox</object>
     <object>objects\objSpot</object>
   </objects>
   <rooms name="rooms">

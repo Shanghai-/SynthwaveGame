@@ -20,8 +20,6 @@
   <width>250</width>
   <height>450</height>
   <frames>
-    <frame index="0">images\sprEnemy_0.png</frame>
-    <frame index="1">images\sprEnemy_1.png</frame>
-    <frame index="2">images\sprEnemy_2.png</frame>
+    <frame index="0">images\sprHurtbox_0.png</frame>
   </frames>
 </sprite>
