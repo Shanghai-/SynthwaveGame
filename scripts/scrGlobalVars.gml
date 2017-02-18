@@ -1,0 +1,1 @@
+global.bpm = 60;

@@ -12,6 +12,9 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scrGlobalVars.gml</script>
+  </scripts>
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objEnemy</object>
@@ -19,6 +22,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>
+    <room>rooms\rmFight</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
