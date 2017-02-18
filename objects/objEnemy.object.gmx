@@ -45,16 +45,20 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = (global.bps / 2) * room_speed;
+            <string>alarm[2] = (global.bps / 4) * room_speed;
 idle = 0;
 tell = 0;
 attack = 0;
+beat = 0;
 position = array_length_1d(global.spot_array) - 1;
 space = global.spot_array[position];
 attack_direction = -1;
-range = 0;
+panned_action = enemy_actions.none;
+range = 1;
 hurtbox = noone;
 image_speed = 0;
+
+can_move = true;
 </string>
           </argument>
         </arguments>
@@ -124,7 +128,7 @@ image_index = idle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>This alarm is where the CPU plans its moves</string>
+            <string>Quarter Note Alarm</string>
           </argument>
         </arguments>
       </action>
@@ -144,8 +148,41 @@ image_index = idle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>attack = 1;
-range = 1;
+            <string>beat++;
+beat = beat mod 4;
+
+if (beat == 0) {
+    if (planned_action != enemy_actions.none) {
+        if (planned_action == enemy_actions.weak) {
+            image_index = attack;
+            var hitspace = global.spot_array[position + (range * attack_direction)];
+            hurtbox = instance_create(hitspace.x, hitspace.y, objHurtbox);
+        } /* else if (planned_action == "move") {
+            if (position &lt; (array_length_1d(global.spot_array) - 1))
+        } */
+    }
+} else if (beat == 1) {
+    if (hurtbox != noone) {
+        with (hurtbox) {
+            instance_destroy();
+        }
+        image_index = idle;
+    }
+} else if (beat == 2) {
+    planned_action = choose(enemy_actions.weak, enemy_actions.move);
+    
+    if (planned_action == enemy_actions.weak) {
+        can_move = false;
+        tell = 1;
+        attack = 2;
+        range = 1;
+    }
+    image_index = tell;
+}
+
+show_debug_message("jalsfk");
+
+alarm[2] = (global.bps / 4) * room_speed;
 </string>
           </argument>
         </arguments>
@@ -192,7 +229,7 @@ range = 1;
 image_index = attack;
 var hitspace = global.spot_array[position + (range * attack_direction)];
 hurtbox = instance_create(hitspace.x, hitspace.y, objHurtbox);
-alarm[3] = 10;
+alarm[3] = (global.bps / 4) * room_speed;;
 </string>
           </argument>
         </arguments>
