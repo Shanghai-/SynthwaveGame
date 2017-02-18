@@ -47,8 +47,8 @@
             <kind>1</kind>
             <string>alarm[0] = (global.bps / 2) * room_speed;
 idle = 0;
-tell = 0;
-attack = 0;
+tell = 1;
+attack = 2;
 position = array_length_1d(global.spot_array) - 1;
 space = global.spot_array[position];
 attack_direction = -1;
