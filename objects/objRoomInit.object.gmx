@@ -25,8 +25,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>global.spacing = floor(room_width / global.spaces);
-global.bps = global.bpm / 60;
+            <string>//global.spacing = floor(room_width / global.spaces);
+var spot_queue = ds_priority_create();
+with objSpot {
+    show_debug_message(self.id);
+    ds_priority_add(spot_queue, self, x)
+}
+
+var spot_array; 
+var i;
+for (i = 0; !ds_priority_empty(spot_queue); i += 1) {
+    spot_array[i] = ds_priority_delete_min(spot_queue);
+}
+
+global.spot_array = spot_array;
+show_debug_message(global.spot_array);
 </string>
           </argument>
         </arguments>

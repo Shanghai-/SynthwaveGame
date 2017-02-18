@@ -14,6 +14,7 @@
     <sprite>sprites\sprEnemy</sprite>
     <sprite>sprites\sprForeground</sprite>
     <sprite>sprites\sprHurtbox</sprite>
+    <sprite>sprites\sprSpot</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -23,12 +24,13 @@
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objEnemy</object>
-    <object>objects\objRoomInit</object>
+    <object>objects\objRoomInit</object
     <object>objects\objHurtbox</object>
+    <object>objects\objSpot</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rmMainMenu</room>
     <room>rooms\rmFight</room>
+    <room>rooms\rmMainMenu</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
