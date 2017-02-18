@@ -44,9 +44,11 @@ global.spot_array = spot_array;
 
 var player_spot = global.spot_array[0];
 instance_create(player_spot.x, player_spot.y, objPlayer);
+objPlayer.spot_index = 0;
 
 var enemy_spot = global.spot_array[5];
 instance_create(enemy_spot.x, enemy_spot.y, objEnemy);
+objEnemy.spot_index = 5;
 </string>
           </argument>
         </arguments>
