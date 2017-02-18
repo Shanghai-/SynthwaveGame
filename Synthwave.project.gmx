@@ -32,6 +32,9 @@
     <room>rooms\rmFight</room>
     <room>rooms\rmMainMenu</room>
   </rooms>
+  <constants number="1">
+    <constant name="BPM">60</constant>
+  </constants>
   <help>
     <rtf>help.rtf</rtf>
   </help>

@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>//global.spacing = floor(room_width / global.spaces);
+global.bps = BPM / 60;
 var spot_queue = ds_priority_create();
 with (objSpot) {
     show_debug_message(self.id);
@@ -40,11 +41,12 @@ for (i = 0; !ds_priority_empty(spot_queue); i += 1) {
 }
 
 global.spot_array = spot_array;
-show_debug_message(global.spot_array);
+
 var player_spot = global.spot_array[0];
-show_debug_message(player_spot.x);
-show_debug_message(player_spot.y);
 instance_create(player_spot.x, player_spot.y, objPlayer);
+
+var enemy_spot = global.spot_array[5];
+instance_create(enemy_spot.x, enemy_spot.y, objEnemy);
 </string>
           </argument>
         </arguments>
