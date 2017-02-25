@@ -32,6 +32,9 @@ next_spot_index = 0;
 image_speed = 0;
 beat = 0;
 wait_for_beat = false;
+hurtbox = noone;
+attack_direction = 1;
+range = 1;
 </string>
           </argument>
         </arguments>
@@ -56,6 +59,7 @@ wait_for_beat = false;
             <kind>1</kind>
             <string>image_index = 0;
 wait_for_beat = false;
+
 </string>
           </argument>
         </arguments>
@@ -139,6 +143,8 @@ if (!moving_left &amp;&amp; !moving_right) {
         image_index = 1;
         wait_for_beat = true;
         alarm[5] = (global.bps / 2) * room_speed;
+        var hitspace = global.spot_array[spot_index + (range * attack_direction)];
+        hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
     } else if (right_down) {
         next_spot_index = spot_index;
         if (shift_down &amp;&amp; spot_index &lt; global.num_spots - 2) {
@@ -185,7 +191,7 @@ if (!moving_left &amp;&amp; !moving_right) {
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="objHurtbox">
+    <event eventtype="4" ename="objHurtboxEnemy">
       <action>
         <libid>1</libid>
         <id>603</id>

@@ -50,8 +50,6 @@ idle = 0;
 tell = 0;
 attack = 0;
 beat = 0;
-position = array_length_1d(global.spot_array) - 1;
-space = global.spot_array[position];
 attack_direction = -1;
 panned_action = enemy_actions.none;
 range = 1;
@@ -110,19 +108,14 @@ if (beat == 0) {
     if (planned_action != enemy_actions.none) {
         if (planned_action == enemy_actions.weak) {
             image_index = attack;
-            var hitspace = global.spot_array[position + (range * attack_direction)];
-            hurtbox = instance_create(hitspace.x, hitspace.y, objHurtbox);
+            var hitspace = global.spot_array[spot_index + (range * attack_direction)];
+            hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
         } /* else if (planned_action == "move") {
             if (position &lt; num_spots - 1))
         } */
     }
 } else if (beat == 1) {
-    if (hurtbox != noone) {
-        with (hurtbox) {
-            instance_destroy();
-        }
-        image_index = idle;
-    }
+
 } else if (beat == 2) {
     planned_action = choose(enemy_actions.weak, enemy_actions.move);
     
