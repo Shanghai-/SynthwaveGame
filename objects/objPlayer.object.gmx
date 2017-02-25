@@ -65,7 +65,6 @@ blur_particle = part_type_create();
 part_type_sprite(blur_particle, sprPlayer, false, false, false);
 part_type_alpha2(blur_particle, 0.5, 0);
 part_type_life(blur_particle, 10, 10);
-part_type_colour_mix(blur_particle, c_green, c_green);
 emitter = part_emitter_create(global.particle_system);
 
 </string>
