@@ -41,6 +41,26 @@ image_speed = 0;
 hurtbox = noone;
 attack_direction = 1;
 range = 1;
+
+healthbar = instance_create(10, 10, objBar);
+with (healthbar) {
+    max_pips = 8;
+    cur_pips = 8;
+    base_x = 20;
+    base_y = 70;
+    pip_spr = sprHealthPip;
+    text_spr = sprHealthText;
+}
+overcharge_bar = instance_create(10, 40, objBar);
+with (overcharge_bar) {
+    max_pips = 6;
+    cur_pips = 0;
+    base_x = 20;
+    base_y = 160;
+    pip_spr = sprOverchargePip;
+    text_spr = sprOverchargeText;
+}
+
 </string>
           </argument>
         </arguments>
@@ -65,6 +85,7 @@ range = 1;
             <kind>1</kind>
             <string>image_index = 0;
 wait_for_beat = false;
+state = player_state.idle;
 
 </string>
           </argument>
@@ -280,10 +301,16 @@ if (!moving_left &amp;&amp; !moving_right) {
     var hitspace = global.spot_array[spot_index + 1];
     instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
     state = player_state.blocking;
+    if (overcharge_bar.cur_pips &lt; overcharge_bar.max_pips) {
+        overcharge_bar.cur_pips += 1;
+    }
 } else if (state == player_state.blocking) {
     
 } else {
     image_index = 2;
+    if (healthbar.cur_pips &gt; 0) {
+        healthbar.cur_pips -= 1;
+    }
     alarm[0] = 30;
 }
 </string>
