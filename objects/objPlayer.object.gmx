@@ -289,6 +289,14 @@ if (dodging) {
     part_particles_create(global.particle_system, x, y, blur_particle, 1);
 }
 
+if (instance_find(objEnemy, 0).x &lt; x) {
+    image_xscale = -1;
+    attack_direction = -1;
+} else {
+    image_xscale = 1;
+    attack_direction = 1;
+}
+
 </string>
           </argument>
         </arguments>
