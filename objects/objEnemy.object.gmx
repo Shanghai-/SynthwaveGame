@@ -50,7 +50,7 @@ idle = 0;
 tell = 0;
 attack = 0;
 beat = 0;
-position = array_length_1d(global.spot_array) - 1;
+position = global.num_spots - 1;
 space = global.spot_array[position];
 attack_direction = -1;
 panned_action = enemy_actions.none;
@@ -103,6 +103,7 @@ can_move = true;
             <kind>1</kind>
             <string>alarm[4] = (global.bps / 4) * room_speed;
 
+space.occupied = true;
 beat++;
 beat = beat mod 4;
 

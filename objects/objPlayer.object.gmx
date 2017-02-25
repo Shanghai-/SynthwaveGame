@@ -27,8 +27,12 @@
             <kind>1</kind>
             <string>moving_left = false;
 moving_right = false;
+spot_index = 0;
 next_spot_index = 0;
+vulnerable = false;
 image_speed = 0;
+
+global.spot_array[spot_index].occupied = true;
 </string>
           </argument>
         </arguments>
@@ -79,43 +83,53 @@ var right_down = keyboard_check(vk_right);
 var left_down = keyboard_check(vk_left);
 
 if (!moving_left &amp;&amp; !moving_right) {
+    next_spot_index = spot_index;
     if (right_down) {
-        next_spot_index = spot_index;
         if (shift_down &amp;&amp; spot_index &lt; global.num_spots - 2) {
-            if (!global.spot_array[spot_index + 2].occupied) {
+            if (global.spot_array[spot_index + 2].occupied == false) {
                 moving_right = true;
                 next_spot_index = spot_index + 2;
                 hspeed = 40; 
             }
         } else if (spot_index &lt; global.num_spots - 1) {
-            moving_right = true;
-            next_spot_index = spot_index + 1;
-            hspeed = 20; 
+            if (global.spot_array[spot_index + 1].occupied == false) {
+                moving_right = true;
+                next_spot_index = spot_index + 1;
+                hspeed = 20; 
+            }
         }
-        next_spot = global.spot_array[next_spot_index];
-          
     } else if (left_down) {
         next_spot_index = spot_index;
         if (shift_down &amp;&amp; spot_index &gt; 1) {
-            moving_left = true;
-            next_spot_index = spot_index - 2;
-            hspeed = -40;
+            if (global.spot_array[spot_index - 2].occupied == false) {
+                moving_left = true;
+                next_spot_index = spot_index - 2;
+                hspeed = -40;
+            }
         } else if (spot_index &gt; 0) {
-            moving_left = true;
-            next_spot_index = spot_index - 1;
-            hspeed = -20;
+            if (global.spot_array[spot_index - 1].occupied == false) {
+                moving_left = true;
+                next_spot_index = spot_index - 1;
+                hspeed = -20;
+            }
         }
+    }
+    if (moving_left || moving_right) {
         next_spot = global.spot_array[next_spot_index];
+        next_spot.occupied = true;
+        global.spot_array[spot_index].occupied = false;
     }
 } else {
     if (moving_right &amp;&amp; x &gt;= next_spot.x) {
         moving_right = false;
         hspeed = 0;
         spot_index = next_spot_index;
+        x = next_spot.x;
     } else if (moving_left &amp;&amp; x &lt;= next_spot.x) {
         moving_left = false;
         hspeed = 0;
         spot_index = next_spot_index;
+        x = next_spot.x;
     }
 }
 
