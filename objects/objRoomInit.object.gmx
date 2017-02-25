@@ -41,6 +41,7 @@ for (i = 0; !ds_priority_empty(spot_queue); i += 1) {
 }
 
 global.spot_array = spot_array;
+global.num_spots = array_length_1d(spot_array);
 
 var player_spot = global.spot_array[0];
 instance_create(player_spot.x, player_spot.y, objPlayer);

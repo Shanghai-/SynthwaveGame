@@ -79,17 +79,33 @@ var right_down = keyboard_check(vk_right);
 var left_down = keyboard_check(vk_left);
 
 if (!moving_left &amp;&amp; !moving_right) {
-    if (right_down &amp;&amp; spot_index &lt; 5) {
-        moving_right = true;
-        next_spot_index = spot_index + 1;
+    if (right_down) {
+        next_spot_index = spot_index;
+        if (shift_down &amp;&amp; spot_index &lt; global.num_spots - 2) {
+            if (!global.spot_array[spot_index + 2].occupied) {
+                moving_right = true;
+                next_spot_index = spot_index + 2;
+                hspeed = 40; 
+            }
+        } else if (spot_index &lt; global.num_spots - 1) {
+            moving_right = true;
+            next_spot_index = spot_index + 1;
+            hspeed = 20; 
+        }
         next_spot = global.spot_array[next_spot_index];
-        hspeed = 20;   
-    
-    } else if (left_down &amp;&amp; spot_index &gt; 0) {
-        moving_left = true;
-        next_spot_index = spot_index - 1;
+          
+    } else if (left_down) {
+        next_spot_index = spot_index;
+        if (shift_down &amp;&amp; spot_index &gt; 1) {
+            moving_left = true;
+            next_spot_index = spot_index - 2;
+            hspeed = -40;
+        } else if (spot_index &gt; 0) {
+            moving_left = true;
+            next_spot_index = spot_index - 1;
+            hspeed = -20;
+        }
         next_spot = global.spot_array[next_spot_index];
-        hspeed = -20;  
     }
 } else {
     if (moving_right &amp;&amp; x &gt;= next_spot.x) {

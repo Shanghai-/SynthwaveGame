@@ -113,7 +113,7 @@ if (beat == 0) {
             var hitspace = global.spot_array[position + (range * attack_direction)];
             hurtbox = instance_create(hitspace.x, hitspace.y, objHurtbox);
         } /* else if (planned_action == "move") {
-            if (position &lt; (array_length_1d(global.spot_array) - 1))
+            if (position &lt; num_spots - 1))
         } */
     }
 } else if (beat == 1) {
