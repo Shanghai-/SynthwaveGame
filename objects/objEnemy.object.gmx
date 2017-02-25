@@ -63,7 +63,10 @@ range = 1;
 hurtbox = noone;
 image_speed = 0;
 
-can_move = true;
+moving_left = false;
+moving_right = false;
+
+next_spot_index = 0;
 </string>
           </argument>
         </arguments>
@@ -108,11 +111,19 @@ can_move = true;
             <kind>1</kind>
             <string>alarm[4] = (global.bps / 4) * room_speed;
 
-space.occupied = true;
 beat++;
 beat = beat mod 4;
-
-if (beat == 0) {
+if (moving_right &amp;&amp; x &gt;= next_spot.x) {
+    moving_right = false;
+    hspeed = 0;
+    spot_index = next_spot_index;
+    x = next_spot.x;
+} else if (moving_left &amp;&amp; x &lt;= next_spot.x) {
+    moving_left = false;
+    hspeed = 0;
+    spot_index = next_spot_index;
+    x = next_spot.x;
+} else if (beat == 0) {
     if (planned_action != enemy_actions.none) {
         if (planned_action == enemy_actions.weak) {
             image_index = attack;
@@ -125,17 +136,32 @@ if (beat == 0) {
 } else if (beat == 1) {
 
 } else if (beat == 2) {
-    planned_action = choose(enemy_actions.weak, enemy_actions.move);
-    
-    if (planned_action == enemy_actions.weak) {
-        can_move = false;
-        tell = 1;
-        attack = 2;
-        range = 1;
+    if (abs(player.spot_index - spot_index) == 1) {
+        planned_action = choose(enemy_actions.weak, enemy_actions.move);
+        if (planned_action == enemy_actions.weak) {
+            can_move = false;
+            tell = 1;
+            attack = 2;
+            range = 1;
+        } else {
+            tell = 0;
+            can_move = true;
+        }
     } else {
-        tell = 0;
-        can_move = true;
+        if (player.spot_index - spot_index &gt; 0) {
+            moving_right = true;
+            next_spot_index = spot_index + 1;
+            hspeed = 20; 
+        } else {
+            moving_left = true;
+            next_spot_index = spot_index - 1;
+            hspeed = -20; 
+        }
+        next_spot = global.spot_array[next_spot_index];
+        next_spot.occupied = true;
+        global.spot_array[spot_index].occupied = false;
     }
+    
     image_index = tell;
 } else if (beat == 3) {
 
