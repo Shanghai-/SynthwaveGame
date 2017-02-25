@@ -137,7 +137,7 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
 
 } else if (beat == 2) {
     if (abs(player.spot_index - spot_index) == 1) {
-        planned_action = choose(enemy_actions.weak, enemy_actions.move);
+        planned_action = choose(enemy_actions.weak, enemy_actions.none);
         if (planned_action == enemy_actions.weak) {
             can_move = false;
             tell = 1;
@@ -157,6 +157,8 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             next_spot_index = spot_index - 1;
             hspeed = -20; 
         }
+        planned_action = enemy_actions.move;
+        tell = 0;
         next_spot = global.spot_array[next_spot_index];
         next_spot.occupied = true;
         global.spot_array[spot_index].occupied = false;
