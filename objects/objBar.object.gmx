@@ -42,7 +42,7 @@ draw_x = base_x + 10;
 if (cur_pips &gt; 0) {
     draw_sprite(pip_spr, 0, draw_x, draw_y);
     for (var i = 1; i &lt; cur_pips; i++) {
-        draw_x += 64;
+        draw_x += 63;
         draw_sprite(pip_spr, (i == max_pips - 1) + 1, draw_x, draw_y);
     }
 }
