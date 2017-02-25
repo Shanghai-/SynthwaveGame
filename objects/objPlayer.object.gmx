@@ -31,7 +31,6 @@ moving_left = false;
 moving_right = false;
 spot_index = 0;
 next_spot_index = 0;
-global.spot_array[spot_index].occupied = true;
 
 beat = 0;
 wait_for_beat = false;
