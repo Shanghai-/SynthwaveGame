@@ -185,7 +185,7 @@ beat = beat mod 4;
 var right_down = keyboard_check(vk_right);
 var left_down = keyboard_check(vk_left);
 var space_down = keyboard_check(vk_space);
-var a_down = keyboard_check(ord('a'));
+var a_down = keyboard_check(ord('A'));
 
 if (!moving_left &amp;&amp; !moving_right) {
     next_spot_index = spot_index;
@@ -278,7 +278,7 @@ if (!moving_left &amp;&amp; !moving_right) {
             <kind>1</kind>
             <string>if (state == player_state.countering) {
     var hitspace = global.spot_array[spot_index + 1];
-    instance_create(hitspace.x, hitspace.y, objHurtbox);
+    instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
     state = player_state.blocking;
 } else if (state == player_state.blocking) {
     
