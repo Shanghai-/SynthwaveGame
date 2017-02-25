@@ -45,7 +45,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[2] = (global.bps / 4) * room_speed;
+            <string>alarm[4] = (global.bps / 4) * room_speed;
 idle = 0;
 tell = 0;
 attack = 0;
@@ -64,54 +64,7 @@ can_move = true;
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="3">
-      <action>
-        <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>This alarm is where the hurtbox is destroyed</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>with(hurtbox) {
-    instance_destroy();
-}
-hurtbox = noone;
-image_index = idle;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="2">
+    <event eventtype="2" enumb="4">
       <action>
         <libid>1</libid>
         <id>605</id>
@@ -148,7 +101,9 @@ image_index = idle;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>beat++;
+            <string>alarm[4] = (global.bps / 4) * room_speed;
+
+beat++;
 beat = beat mod 4;
 
 if (beat == 0) {
@@ -176,104 +131,14 @@ if (beat == 0) {
         tell = 1;
         attack = 2;
         range = 1;
+    } else {
+        tell = 0;
+        can_move = true;
     }
     image_index = tell;
+} else if (beat == 3) {
+
 }
-
-show_debug_message("jalsfk");
-
-alarm[2] = (global.bps / 4) * room_speed;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="1">
-      <action>
-        <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>This alarm is where the CPU attacks</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>alarm[0] = (global.bps / 2) * room_speed;
-image_index = attack;
-var hitspace = global.spot_array[position + (range * attack_direction)];
-hurtbox = instance_create(hitspace.x, hitspace.y, objHurtbox);
-alarm[3] = (global.bps / 4) * room_speed;;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>605</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>0</useapplyto>
-        <exetype>0</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>This alarm is where the CPU does its tell</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>alarm[1] = (global.bps / 2) * room_speed;
-image_index = tell;
 </string>
           </argument>
         </arguments>

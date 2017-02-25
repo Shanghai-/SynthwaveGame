@@ -74,18 +74,20 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!moving_left &amp;&amp; !moving_right) {
-    if (keyboard_check(vk_right) &amp;&amp; spot_index &lt; 5) {
+            <string>var shift_down = keyboard_check(vk_shift);
+var right_down = keyboard_check(vk_right);
+var left_down = keyboard_check(vk_left);
+
+if (!moving_left &amp;&amp; !moving_right) {
+    if (right_down &amp;&amp; spot_index &lt; 5) {
         moving_right = true;
         next_spot_index = spot_index + 1;
-        show_debug_message(next_spot_index);
         next_spot = global.spot_array[next_spot_index];
         hspeed = 20;   
     
-    } else if (keyboard_check(vk_left) &amp;&amp; spot_index &gt; 0) {
+    } else if (left_down &amp;&amp; spot_index &gt; 0) {
         moving_left = true;
         next_spot_index = spot_index - 1;
-        show_debug_message(next_spot_index);
         next_spot = global.spot_array[next_spot_index];
         hspeed = -20;  
     }
