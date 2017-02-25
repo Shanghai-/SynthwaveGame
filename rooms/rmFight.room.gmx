@@ -58,6 +58,7 @@
     <instance objName="objSpot" x="928" y="864" name="inst_30437E58" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpot" x="1184" y="864" name="inst_1880FDE9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objSpot" x="1440" y="864" name="inst_149EE422" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objBar" x="96" y="64" name="inst_199C65B6" locked="0" code="max_pips = 6;&#xA;cur_pips = 6;&#xA;base_x = 20;&#xA;base_y = 70;&#xA;pip_spr = sprHealthPip;&#xA;text_spr = sprHealthText;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

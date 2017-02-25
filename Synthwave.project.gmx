@@ -16,6 +16,11 @@
     <sprite>sprites\sprForeground</sprite>
     <sprite>sprites\sprHurtbox</sprite>
     <sprite>sprites\sprSpot</sprite>
+    <sprite>sprites\sprHealthPip</sprite>
+    <sprite>sprites\sprOverchargePip</sprite>
+    <sprite>sprites\sprBar</sprite>
+    <sprite>sprites\sprHealthText</sprite>
+    <sprite>sprites\sprOverchargeText</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -29,6 +34,7 @@
     <object>objects\objHurtboxEnemy</object>
     <object>objects\objHurtboxPlayer</object>
     <object>objects\objSpot</object>
+    <object>objects\objBar</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmFight</room>
