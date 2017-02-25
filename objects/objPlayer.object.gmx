@@ -25,10 +25,62 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>moving_left = false;
+            <string>alarm[4] = (global.bps / 4) * room_speed;
+moving_left = false;
 moving_right = false;
 next_spot_index = 0;
 image_speed = 0;
+beat = 0;
+wait_for_beat = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>image_index = 0;
+wait_for_beat = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>alarm[4] = (global.bps / 4) * room_speed;
+beat++;
+beat = beat mod 4;
 </string>
           </argument>
         </arguments>
@@ -78,8 +130,16 @@ image_speed = 0;
 var right_down = keyboard_check(vk_right);
 var left_down = keyboard_check(vk_left);
 
+var space_pressed = keyboard_check(vk_space);
+
 if (!moving_left &amp;&amp; !moving_right) {
-    if (right_down) {
+    if(wait_for_beat) {
+        // do nothing
+    } else if (space_pressed) {
+        image_index = 1;
+        wait_for_beat = true;
+        alarm[5] = (global.bps / 2) * room_speed;
+    } else if (right_down) {
         next_spot_index = spot_index;
         if (shift_down &amp;&amp; spot_index &lt; global.num_spots - 2) {
             if (!global.spot_array[spot_index + 2].occupied) {
@@ -142,7 +202,7 @@ if (!moving_left &amp;&amp; !moving_right) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = 1;
+            <string>image_index = 2;
 alarm[0] = 30;
 </string>
           </argument>

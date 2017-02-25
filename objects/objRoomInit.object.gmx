@@ -51,7 +51,7 @@ var enemy_spot = global.spot_array[5];
 instance_create(enemy_spot.x, enemy_spot.y, objEnemy);
 objEnemy.spot_index = 5;
 
-audio_play_sound(click, 0, true);
+audio_play_sound(oneTwentyBPM, 0, true);
 </string>
           </argument>
         </arguments>
