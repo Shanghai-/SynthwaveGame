@@ -25,14 +25,113 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>moving_left = false;
+            <string>alarm[4] = (global.bps / 4) * room_speed;
+
+moving_left = false;
 moving_right = false;
 spot_index = 0;
 next_spot_index = 0;
-vulnerable = false;
-image_speed = 0;
-
 global.spot_array[spot_index].occupied = true;
+
+beat = 0;
+wait_for_beat = false;
+state = player_state.idle;
+
+image_speed = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>image_index = 0;
+wait_for_beat = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>alarm[4] = (global.bps / 4) * room_speed;
+beat++;
+beat = beat mod 4;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Beat window expiry timer</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (state == player_state.countering) {
+    state = player_state.blocking;
+}
 </string>
           </argument>
         </arguments>
@@ -81,10 +180,20 @@ global.spot_array[spot_index].occupied = true;
             <string>var shift_down = keyboard_check(vk_shift);
 var right_down = keyboard_check(vk_right);
 var left_down = keyboard_check(vk_left);
+var space_down = keyboard_check(vk_space);
 
 if (!moving_left &amp;&amp; !moving_right) {
     next_spot_index = spot_index;
-    if (right_down) {
+    if (wait_for_beat) {
+        // do nothing
+    } else if (space_down) {
+        image_index = 3;
+        wait_for_beat = true;
+        state = player_state.countering;
+        alarm[5] = (global.bps / 2) * room_speed;
+        alarm[1] = 6;
+    } else if (right_down) {
+        next_spot_index = spot_index;
         if (shift_down &amp;&amp; spot_index &lt; global.num_spots - 2) {
             if (global.spot_array[spot_index + 2].occupied == false) {
                 moving_right = true;
@@ -156,8 +265,16 @@ if (!moving_left &amp;&amp; !moving_right) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = 1;
-alarm[0] = 30;
+            <string>if (state == player_state.countering) {
+    var hitspace = global.spot_array[spot_index + 1];
+    instance_create(hitspace.x, hitspace.y, objHurtbox);
+    state = player_state.blocking;
+} else if (state == player_state.blocking) {
+    
+} else {
+    image_index = 2;
+    alarm[0] = 30;
+}
 </string>
           </argument>
         </arguments>

@@ -46,15 +46,19 @@
           <argument>
             <kind>1</kind>
             <string>alarm[4] = (global.bps / 4) * room_speed;
+beat = 0;
+
 idle = 0;
 tell = 0;
 attack = 0;
-beat = 0;
+
 position = global.num_spots - 1;
 space = global.spot_array[position];
+
+planned_action = enemy_actions.none;
 attack_direction = -1;
-panned_action = enemy_actions.none;
 range = 1;
+
 hurtbox = noone;
 image_speed = 0;
 

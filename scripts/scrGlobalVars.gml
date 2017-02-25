@@ -5,3 +5,12 @@ enum enemy_actions {
     weak,
     move
 }
+
+enum player_state {
+    idle,
+    moving,
+    blocking,
+    countering,
+    attacking,
+    resting
+}
