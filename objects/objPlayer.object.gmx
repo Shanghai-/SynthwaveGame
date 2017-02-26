@@ -165,6 +165,7 @@ beat = beat mod 4;
     overcharge_bar.cur_pips -= 1;
     alarm[2] = (5 / overcharge_bar.max_pips) * room_speed;
 } else {
+    image_index = 0;
     state = player_state.idle;
 }
 </string>
@@ -212,6 +213,7 @@ beat = beat mod 4;
             <string>if (state == player_state.countering) {
     state = player_state.blocking;
 } else if (state == player_state.solo_time) {
+    image_index = 0;
     can_attack = true;
 }
 </string>
