@@ -239,6 +239,7 @@ if (healthbar.cur_pips &gt; 0) {
     healthbar.cur_pips -= 1;
     if (healthbar.cur_pips &lt; 1) {
         show_message("YOU WIN!!!");
+        global.time_stopped = true;
     }
 }
 

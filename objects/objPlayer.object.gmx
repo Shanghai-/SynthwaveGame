@@ -291,7 +291,8 @@ if (!moving_left &amp;&amp; !moving_right) {
     } else if (a_down) {
         image_index = 1;
         state = player_state.countering;
-        alarm[1] = 6;
+        //alarm[1] = 6;
+        alarm[1] = 12;
         alarm[5] = (global.bps / 2) * room_speed;
         wait_for_beat = true;
     } else if (space_down) {
@@ -389,8 +390,8 @@ if (instance_find(objEnemy, 0).x &lt; x) {
           <argument>
             <kind>1</kind>
             <string>if (state == player_state.countering) {
-    var hitspace = global.spot_array[spot_index + 1];
-    instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
+    /* var hitspace = global.spot_array[spot_index + 1];
+    instance_create(hitspace.x, hitspace.y, objHurtboxPlayer); */
     state = player_state.blocking;
     if (overcharge_bar.cur_pips &lt; overcharge_bar.max_pips) {
         overcharge_bar.cur_pips += 1;
