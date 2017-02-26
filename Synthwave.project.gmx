@@ -21,6 +21,7 @@
     <sprite>sprites\sprBar</sprite>
     <sprite>sprites\sprHealthText</sprite>
     <sprite>sprites\sprOverchargeText</sprite>
+    <sprite>sprites\sprSoloTime</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -36,6 +37,7 @@
     <object>objects\objSpot</object>
     <object>objects\objBar</object>
     <object>objects\objScreenShake</object>
+    <object>objects\objSoloText</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmFight</room>

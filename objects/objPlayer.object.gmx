@@ -54,7 +54,7 @@ with (healthbar) {
 overcharge_bar = instance_create(10, 40, objBar);
 with (overcharge_bar) {
     max_pips = 6;
-    cur_pips = 0;
+    cur_pips = 5;
     base_x = 20;
     base_y = 160;
     pip_spr = sprOverchargePip;
@@ -324,6 +324,9 @@ if (instance_find(objEnemy, 0).x &lt; x) {
     state = player_state.blocking;
     if (overcharge_bar.cur_pips &lt; overcharge_bar.max_pips) {
         overcharge_bar.cur_pips += 1;
+        if (overcharge_bar.cur_pips == overcharge_bar.max_pips) {
+            instance_create(0, room_height / 3, objSoloText);
+        }
     }
 } else if (state == player_state.blocking) {
     
