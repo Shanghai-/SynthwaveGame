@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>global.particle_system = part_system_create();
 global.bps = BPM / 60;
+global.time_stopped = false;
 var spot_queue = ds_priority_create();
 with (objSpot) {
     show_debug_message(self.id);

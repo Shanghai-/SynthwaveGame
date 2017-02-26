@@ -188,7 +188,12 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_find(objPlayer, 0).x &lt; x) {
+            <string>if (global.time_stopped) {
+    if (alarm[4] &gt; 0) alarm[4]++;
+    exit;
+}
+
+if (instance_find(objPlayer, 0).x &lt; x) {
     image_xscale = -1;
     attack_direction = -1;
 } else {

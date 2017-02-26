@@ -32,6 +32,7 @@ moving_right = false;
 dodging = false;
 spot_index = 0;
 next_spot_index = 0;
+can_attack = true;
 
 beat = 0;
 wait_for_beat = false;
@@ -54,7 +55,7 @@ with (healthbar) {
 overcharge_bar = instance_create(10, 40, objBar);
 with (overcharge_bar) {
     max_pips = 6;
-    cur_pips = 5;
+    cur_pips = 0;
     base_x = 20;
     base_y = 160;
     pip_spr = sprOverchargePip;
@@ -123,6 +124,54 @@ beat = beat mod 4;
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Solo meter countdown</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (overcharge_bar.cur_pips &gt; 0) {
+    overcharge_bar.cur_pips -= 1;
+    alarm[2] = (5 / overcharge_bar.max_pips) * room_speed;
+} else {
+    state = player_state.idle;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="1">
       <action>
         <libid>1</libid>
@@ -162,6 +211,8 @@ beat = beat mod 4;
             <kind>1</kind>
             <string>if (state == player_state.countering) {
     state = player_state.blocking;
+} else if (state == player_state.solo_time) {
+    can_attack = true;
 }
 </string>
           </argument>
@@ -214,18 +265,37 @@ var left_down = keyboard_check(vk_left);
 var space_down = keyboard_check(vk_space);
 var a_down = keyboard_check(ord('A'));
 
+if (global.time_stopped) {
+    if (alarm[0] &gt; 0) alarm[0]++;
+    if (alarm[2] &gt; 0) alarm[2]++;
+    if (alarm[4] &gt; 0) alarm[4]++;
+    if (alarm[5] &gt; 0) alarm[5]++;
+    exit;
+}
+
+if (state == player_state.solo_time) {
+    if (space_down &amp;&amp; can_attack) {
+        image_index = 3;
+        var hitspace = global.spot_array[spot_index + (range * attack_direction)];
+        hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
+        can_attack = false;
+        alarm[1] = (global.bps / 4) * room_speed;
+    }
+    exit;
+}
+
 if (!moving_left &amp;&amp; !moving_right) {
     next_spot_index = spot_index;
     if (wait_for_beat) {
         // do nothing
     } else if (a_down) {
-        image_index = 3;
+        image_index = 1;
         state = player_state.countering;
         alarm[1] = 6;
         alarm[5] = (global.bps / 2) * room_speed;
         wait_for_beat = true;
     } else if (space_down) {
-        image_index = 1;
+        image_index = 4;
         alarm[5] = (global.bps / 2) * room_speed;
         var hitspace = global.spot_array[spot_index + (range * attack_direction)];
         hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
@@ -325,11 +395,15 @@ if (instance_find(objEnemy, 0).x &lt; x) {
     if (overcharge_bar.cur_pips &lt; overcharge_bar.max_pips) {
         overcharge_bar.cur_pips += 1;
         if (overcharge_bar.cur_pips == overcharge_bar.max_pips) {
-            instance_create(0, room_height / 3, objSoloText);
+            instance_create(0, room_height / 2, objSoloText);
+            state = player_state.solo_time;
+            alarm[2] = (5 / overcharge_bar.max_pips) * room_speed;
         }
     }
 } else if (state == player_state.blocking) {
     
+} else if (state == player_state.solo_time) {
+
 } else {
     image_index = 2;
     if (healthbar.cur_pips &gt; 0) {

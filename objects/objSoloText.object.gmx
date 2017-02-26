@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>hspeed = 48;
 rect_height = 4;
+global.time_stopped = true;
 </string>
           </argument>
         </arguments>
@@ -50,16 +51,24 @@ rect_height = 4;
           <argument>
             <kind>1</kind>
             <string>if (x &gt; room_width + sprite_width) {
+    global.time_stopped = false;
     instance_destroy();
-} else if (x &gt; (room_width / 2) + (sprite_width / 2)) {
+} else if (x &gt; (room_width / 2) + (sprite_width / 2) + 40) {
     hspeed = 48;
-} else if (x &gt; (room_width / 2) + (sprite_width / 6)) {
-    hspeed = 3;
+    if (rect_height &gt; 0) {
+        rect_height -= 8;
+    }
+} else if (x &gt; (room_width / 2) + (sprite_width / 4)) {
+    hspeed = 4;
+    if (rect_height &lt; 200) {
+        rect_height += 2;
+    }
+} else {
+    if (rect_height &lt; 200) {
+        rect_height += 3;
+    }
 }
 
-if (rect_height &lt; 260) {
-    rect_height += 2;
-}
 </string>
           </argument>
         </arguments>

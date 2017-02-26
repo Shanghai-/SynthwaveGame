@@ -1,4 +1,5 @@
 global.bpm = 60;
+global.time_stopped = false;
 
 enum enemy_actions {
     none,
@@ -12,5 +13,6 @@ enum player_state {
     blocking,
     countering,
     attacking,
-    resting
+    resting,
+    solo_time
 }

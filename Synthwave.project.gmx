@@ -22,8 +22,12 @@
     <sprite>sprites\sprHealthText</sprite>
     <sprite>sprites\sprOverchargeText</sprite>
     <sprite>sprites\sprSoloTime</sprite>
+    <sprite>sprites\sprGridGround</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\cyber_city</background>
+    <background>background\foreground_grid</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scrGlobalVars.gml</script>
