@@ -17,6 +17,7 @@
     <sprite>sprites\sprHurtbox</sprite>
     <sprite>sprites\sprSpot</sprite>
     <sprite>sprites\sprHealthPip</sprite>
+    <sprite>sprites\sprEnemyHealthPip</sprite>
     <sprite>sprites\sprOverchargePip</sprite>
     <sprite>sprites\sprBar</sprite>
     <sprite>sprites\sprHealthText</sprite>
