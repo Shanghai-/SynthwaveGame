@@ -405,6 +405,7 @@ if (instance_find(objEnemy, 0).x &lt; x) {
 } else if (state == player_state.solo_time) {
 
 } else {
+    instance_create(x, y, objScreenShake);
     image_index = 2;
     if (healthbar.cur_pips &gt; 0) {
         healthbar.cur_pips -= 1;

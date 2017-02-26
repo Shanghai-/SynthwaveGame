@@ -67,6 +67,18 @@ moving_left = false;
 moving_right = false;
 
 next_spot_index = 0;
+
+healthbar = instance_create(10, 10, objBar);
+with (healthbar) {
+    max_pips = 8;
+    cur_pips = 8;
+    base_x = 1024;
+    base_y = 70;
+    pip_spr = sprEnemyHealthPip;
+    text_spr = sprHealthText;
+}
+
+show_debug_message(healthbar);
 </string>
           </argument>
         </arguments>
@@ -200,6 +212,36 @@ if (instance_find(objPlayer, 0).x &lt; x) {
     image_xscale = 1;
     attack_direction = 1;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="objHurtboxPlayer">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_create(x, y, objScreenShake);
+if (healthbar.cur_pips &gt; 0) {
+    healthbar.cur_pips -= 1;
+    if (healthbar.cur_pips &lt; 1) {
+        show_message("YOU WIN!!!");
+    }
+}
+
 </string>
           </argument>
         </arguments>
