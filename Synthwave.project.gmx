@@ -35,6 +35,7 @@
     <object>objects\objHurtboxPlayer</object>
     <object>objects\objSpot</object>
     <object>objects\objBar</object>
+    <object>objects\objScreenShake</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmFight</room>
