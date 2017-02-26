@@ -229,7 +229,8 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (healthbar.cur_pips &gt; 0) {
+            <string>instance_create(x, y, objScreenShake);
+if (healthbar.cur_pips &gt; 0) {
     healthbar.cur_pips -= 1;
     if (healthbar.cur_pips &lt; 1) {
         show_message("YOU WIN!!!");
