@@ -70,6 +70,7 @@ emitter = part_emitter_create(global.particle_system);
 shaded_red = false;
 shaded_bluegreen = false;
 alive = true;
+shutdown_shader_object = instance_create(0, 0, objShutdownShader);
 
 </string>
           </argument>
@@ -93,7 +94,8 @@ alive = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(roomGameOver);
+            <string>shutdown_shader_object.active = false;
+room_goto(roomGameOver);
 </string>
           </argument>
         </arguments>
@@ -468,7 +470,6 @@ if (instance_find(objEnemy, 0).x &lt; x) {
             healthbar.cur_pips -= 1;
         } else {
             alive = false;
-            var shutdown_shader_object = instance_create(0, 0, objShutdownShader);
             shutdown_shader_object.active = true;
             alarm[7] = room_speed * 2;
         }
