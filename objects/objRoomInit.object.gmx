@@ -55,7 +55,8 @@ objEnemy.spot_index = 5;
 objEnemy.player = objPlayer;
 enemy_spot.occupied = true;
 
-audio_play_sound(oneTwentyBPM, 0, true);
+audio_stop_all();
+audio_play_sound(gameSong, 0, true);
 </string>
           </argument>
         </arguments>

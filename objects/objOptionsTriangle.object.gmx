@@ -103,20 +103,22 @@ if (!cooldown) {
             if (global.sfx_volume &gt; 0) {
                 global.sfx_volume -= 1;
             }
-            audio_master_gain(global.music_volume / 100);
+            // We don't actually have any SFX, so the sfx vol slider
+            // does nothing. 
         }
     } else if (right_down &amp;&amp; !left_down) {
         if (my_position == 0) {
             if (global.music_volume &lt; 100) {
                 global.music_volume += 1;
             }
-            // We don't actually have any SFX, so the sfx vol slider
-            // does nothing. 
-            //audio_master_gain(global.sfx_volume / 100);
+            audio_master_gain(global.music_volume / 100);
+            
         } else if (my_position == 1) {
             if (global.sfx_volume &lt; 100) {
                 global.sfx_volume += 1;
             }
+            // We don't actually have any SFX, so the sfx vol slider
+            // does nothing. 
             //audio_master_gain(global.sfx_volume / 100);
         }
      } else if (up_down &amp;&amp; !down_down) {

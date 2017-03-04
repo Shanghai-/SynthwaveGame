@@ -142,9 +142,11 @@ shaded_bluegreen = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = 0;
-wait_for_beat = false;
-state = player_state.idle;
+            <string>if (state != player_state.solo_time) {
+    image_index = 0;
+    wait_for_beat = false;
+    state = player_state.idle;
+}
 
 </string>
           </argument>
@@ -335,7 +337,7 @@ if (state == player_state.solo_time) {
         var hitspace = global.spot_array[spot_index + (range * attack_direction)];
         hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
         can_attack = false;
-        alarm[1] = (global.bps / 4) * room_speed;
+        alarm[1] = (global.bps / 2) * room_speed;
     }
     exit;
 }
@@ -456,12 +458,13 @@ if (instance_find(objEnemy, 0).x &lt; x) {
             instance_create(0, room_height / 2, objSoloText);
             state = player_state.solo_time;
             alarm[2] = (5 / overcharge_bar.max_pips) * room_speed;
+            exit;
         }
     }
 } else if (state == player_state.blocking) {
-    
+    exit;
 } else if (state == player_state.solo_time) {
-
+    exit;
 } else {
     if (alive) {
         instance_create(x, y, objScreenShake);
