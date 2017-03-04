@@ -33,6 +33,9 @@
   <scripts name="scripts">
     <script>scripts\scrGlobalVars.gml</script>
   </scripts>
+  <shaders name="shaders">
+    <shader type="GLSLES">shaders\shaderDamage.shader</shader>
+  </shaders>
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objEnemy</object>
