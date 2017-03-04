@@ -69,7 +69,33 @@ part_type_life(blur_particle, 10, 10);
 emitter = part_emitter_create(global.particle_system);
 shaded_red = false;
 shaded_bluegreen = false;
+alive = true;
+shutdown_shader_object = instance_create(0, 0, objShutdownShader);
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>shutdown_shader_object.active = false;
+room_goto(roomGameOver);
 </string>
           </argument>
         </arguments>
@@ -264,7 +290,9 @@ beat = beat mod 4;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = 0;
+            <string>if (alive) {
+    image_index = 0;
+}
 </string>
           </argument>
         </arguments>
@@ -337,7 +365,7 @@ if (!moving_left &amp;&amp; !moving_right) {
             moving_right = true;
             dodging = true;
             next_spot_index = spot_index + 2;
-            hspeed = 40; 
+            hspeed = 60; 
         } else if (spot_index &lt; global.num_spots - 1) {
             if (global.spot_array[spot_index + 1].occupied == false) {
                 moving_right = true;
@@ -352,7 +380,7 @@ if (!moving_left &amp;&amp; !moving_right) {
             moving_left = true;
             dodging = true;
             next_spot_index = spot_index - 2;
-            hspeed = -40;
+            hspeed = -60;
         } else if (spot_index &gt; 0) {
             if (global.spot_array[spot_index - 1].occupied == false) {
                 moving_left = true;
@@ -435,14 +463,20 @@ if (instance_find(objEnemy, 0).x &lt; x) {
 } else if (state == player_state.solo_time) {
 
 } else {
-    instance_create(x, y, objScreenShake);
-    image_index = 2;
-    if (healthbar.cur_pips &gt; 0) {
-        healthbar.cur_pips -= 1;
+    if (alive) {
+        instance_create(x, y, objScreenShake);
+        image_index = 2;
+        if (healthbar.cur_pips &gt; 1) {
+            healthbar.cur_pips -= 1;
+        } else {
+            alive = false;
+            shutdown_shader_object.active = true;
+            alarm[7] = room_speed * 2;
+        }
+        alarm[0] = 30;
+        alarm[6] = 15;
+        shaded_red = true;
     }
-    alarm[0] = 30;
-    alarm[6] = 15;
-    shaded_red = true;
 }
 </string>
           </argument>

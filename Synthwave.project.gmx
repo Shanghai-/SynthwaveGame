@@ -25,6 +25,7 @@
     <sprite>sprites\sprSoloTime</sprite>
     <sprite>sprites\sprGridGround</sprite>
     <sprite>sprites\sprMenuTriangle</sprite>
+    <sprite>sprites\sprGameOver</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\cyber_city</background>
@@ -38,6 +39,7 @@
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shaderDamage.shader</shader>
     <shader type="GLSLES">shaders\shaderBlock.shader</shader>
+    <shader type="GLSLES">shaders\crtshutdown_shader.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fntBttn</font>
@@ -62,11 +64,14 @@
       <object>objects\objMenuTriangle</object>
       <object>objects\objOptionsTriangle</object>
     </objects>
+    <object>objects\objGameOverMessage</object>
+    <object>objects\objShutdownShader</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>
     <room>rooms\rmOptions</room>
     <room>rooms\rmFight</room>
+    <room>rooms\roomGameOver</room>
   </rooms>
   <constants number="1">
     <constant name="BPM">60</constant>
