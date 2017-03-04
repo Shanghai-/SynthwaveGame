@@ -8,6 +8,8 @@
     <sounds name="Music">
       <sound>sound\click</sound>
       <sound>sound\oneTwentyBPM</sound>
+      <sound>sound\menuTheme</sound>
+      <sound>sound\gameSong</sound>
     </sounds>
   </sounds>
   <sprites name="sprites">

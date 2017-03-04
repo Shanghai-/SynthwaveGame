@@ -29,6 +29,11 @@
 
 global.music_volume = 100;
 global.sfx_volume = 100;
+
+if (!audio_is_playing(menuTheme)) {
+    audio_stop_all();
+    audio_play_sound(menuTheme, 1, true);
+}
 </string>
           </argument>
         </arguments>
