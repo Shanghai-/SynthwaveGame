@@ -24,10 +24,12 @@
     <sprite>sprites\sprOverchargeText</sprite>
     <sprite>sprites\sprSoloTime</sprite>
     <sprite>sprites\sprGridGround</sprite>
+    <sprite>sprites\sprMenuTriangle</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\cyber_city</background>
     <background>background\foreground_grid</background>
+    <background>background\menu_window</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -37,6 +39,9 @@
     <shader type="GLSLES">shaders\shaderDamage.shader</shader>
     <shader type="GLSLES">shaders\shaderBlock.shader</shader>
   </shaders>
+  <fonts name="fonts">
+    <font>fonts\fntBttn</font>
+  </fonts>
   <objects name="objects">
     <object>objects\objPlayer</object>
     <object>objects\objEnemy</object>
@@ -47,10 +52,21 @@
     <object>objects\objBar</object>
     <object>objects\objScreenShake</object>
     <object>objects\objSoloText</object>
+    <objects name="Menu">
+      <object>objects\btnPlay</object>
+      <object>objects\btnMusicVol</object>
+      <object>objects\btnSFXVol</object>
+      <object>objects\btnBack</object>
+      <object>objects\btnOptions</object>
+      <object>objects\btnExit</object>
+      <object>objects\objMenuTriangle</object>
+      <object>objects\objOptionsTriangle</object>
+    </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rmFight</room>
     <room>rooms\rmMainMenu</room>
+    <room>rooms\rmOptions</room>
+    <room>rooms\rmFight</room>
   </rooms>
   <constants number="1">
     <constant name="BPM">60</constant>

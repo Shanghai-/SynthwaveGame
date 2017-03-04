@@ -172,7 +172,7 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
 
 } else if (beat == 2) {
     if (abs(player.spot_index - spot_index) == 1) {
-        planned_action = choose(enemy_actions.weak, enemy_actions.none);
+        planned_action = choose(enemy_actions.weak, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
         if (planned_action == enemy_actions.weak) {
             can_move = false;
             tell = 1;
