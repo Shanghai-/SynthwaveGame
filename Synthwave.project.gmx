@@ -42,6 +42,7 @@
     <shader type="GLSLES">shaders\shaderDamage.shader</shader>
     <shader type="GLSLES">shaders\shaderBlock.shader</shader>
     <shader type="GLSLES">shaders\crtshutdown_shader.shader</shader>
+    <shader type="GLSLES">shaders\shaderPulse.shader</shader>
   </shaders>
   <fonts name="fonts">
     <font>fonts\fntBttn</font>
@@ -68,6 +69,7 @@
     </objects>
     <object>objects\objGameOverMessage</object>
     <object>objects\objShutdownShader</object>
+    <object>objects\objForgroundGrid</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>
