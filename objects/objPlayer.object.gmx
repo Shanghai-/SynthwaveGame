@@ -68,6 +68,7 @@ part_type_alpha2(blur_particle, 0.5, 0);
 part_type_life(blur_particle, 10, 10);
 emitter = part_emitter_create(global.particle_system);
 shaded_red = false;
+shaded_bluegreen = false;
 
 </string>
           </argument>
@@ -92,6 +93,7 @@ shaded_red = false;
           <argument>
             <kind>1</kind>
             <string>shaded_red = false;
+shaded_bluegreen = false;
 </string>
           </argument>
         </arguments>
@@ -414,6 +416,8 @@ if (instance_find(objEnemy, 0).x &lt; x) {
           <argument>
             <kind>1</kind>
             <string>if (state == player_state.countering) {
+    shaded_bluegreen = true;
+    alarm[6] = 15;
     /* var hitspace = global.spot_array[spot_index + 1];
     instance_create(hitspace.x, hitspace.y, objHurtboxPlayer); */
     state = player_state.blocking;
@@ -463,6 +467,10 @@ if (instance_find(objEnemy, 0).x &lt; x) {
             <kind>1</kind>
             <string>if (shaded_red) {
     shader_set(shaderDamage);
+    draw_self();
+    shader_reset();  
+} else if (shaded_bluegreen){
+    shader_set(shaderBlock);
     draw_self();
     shader_reset();  
 } else {
