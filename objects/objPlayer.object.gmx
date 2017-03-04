@@ -329,13 +329,12 @@ if (!moving_left &amp;&amp; !moving_right) {
         wait_for_beat = true;
     } else if (right_down) {
         next_spot_index = spot_index;
-        if (shift_down &amp;&amp; spot_index &lt; global.num_spots - 2) {
-            if (global.spot_array[spot_index + 2].occupied == false) {
-                moving_right = true;
-                dodging = true;
-                next_spot_index = spot_index + 2;
-                hspeed = 40; 
-            }
+        if (shift_down &amp;&amp; spot_index &lt; global.num_spots - 2 
+        &amp;&amp; global.spot_array[spot_index + 2].occupied == false) {
+            moving_right = true;
+            dodging = true;
+            next_spot_index = spot_index + 2;
+            hspeed = 40; 
         } else if (spot_index &lt; global.num_spots - 1) {
             if (global.spot_array[spot_index + 1].occupied == false) {
                 moving_right = true;
@@ -345,13 +344,12 @@ if (!moving_left &amp;&amp; !moving_right) {
         }
     } else if (left_down) {
         next_spot_index = spot_index;
-        if (shift_down &amp;&amp; spot_index &gt; 1) {
-            if (global.spot_array[spot_index - 2].occupied == false) {
-                moving_left = true;
-                dodging = true;
-                next_spot_index = spot_index - 2;
-                hspeed = -40;
-            }
+        if (shift_down &amp;&amp; spot_index &gt; 1 
+        &amp;&amp; global.spot_array[spot_index - 2].occupied == false) {
+            moving_left = true;
+            dodging = true;
+            next_spot_index = spot_index - 2;
+            hspeed = -40;
         } else if (spot_index &gt; 0) {
             if (global.spot_array[spot_index - 1].occupied == false) {
                 moving_left = true;
