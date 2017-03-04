@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>alarm[4] = (global.bps / 4) * room_speed;
 
+depth = -2;
+
 moving_left = false;
 moving_right = false;
 dodging = false;

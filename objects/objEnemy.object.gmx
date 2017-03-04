@@ -48,6 +48,8 @@
             <string>alarm[4] = (global.bps / 4) * room_speed;
 beat = 0;
 
+depth = -1;
+
 idle = 0;
 tell = 0;
 attack = 0;
