@@ -24,6 +24,7 @@
     <sprite>sprites\sprOverchargeText</sprite>
     <sprite>sprites\sprSoloTime</sprite>
     <sprite>sprites\sprGridGround</sprite>
+    <sprite>sprites\sprGameOver</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\cyber_city</background>
@@ -36,6 +37,7 @@
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shaderDamage.shader</shader>
     <shader type="GLSLES">shaders\shaderBlock.shader</shader>
+    <shader type="GLSLES">shaders\crtshutdown_shader.shader</shader>
   </shaders>
   <objects name="objects">
     <object>objects\objPlayer</object>
@@ -47,10 +49,13 @@
     <object>objects\objBar</object>
     <object>objects\objScreenShake</object>
     <object>objects\objSoloText</object>
+    <object>objects\objGameOverMessage</object>
+    <object>objects\objShutdownShader</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmFight</room>
     <room>rooms\rmMainMenu</room>
+    <room>rooms\roomGameOver</room>
   </rooms>
   <constants number="1">
     <constant name="BPM">60</constant>
