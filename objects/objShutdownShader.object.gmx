@@ -76,7 +76,7 @@ application_surface_draw_enable(false);
           </argument>
           <argument>
             <kind>0</kind>
-            <string>room_speed * 3</string>
+            <string>room_speed * 4</string>
           </argument>
         </arguments>
       </action>
@@ -163,7 +163,7 @@ if (is_compiled &amp;&amp; active)
     {
         active = false;
         ticks = 0;
-        room_goto(roomGameOver);
+        
     }
 }
 
