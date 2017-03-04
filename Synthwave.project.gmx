@@ -38,6 +38,7 @@
     <shader type="GLSLES">shaders\shaderDamage.shader</shader>
     <shader type="GLSLES">shaders\shaderBlock.shader</shader>
     <shader type="GLSLES">shaders\crtshutdown_shader.shader</shader>
+    <shader type="GLSLES">shaders\shaderPulse.shader</shader>
   </shaders>
   <objects name="objects">
     <object>objects\objPlayer</object>
@@ -51,6 +52,7 @@
     <object>objects\objSoloText</object>
     <object>objects\objGameOverMessage</object>
     <object>objects\objShutdownShader</object>
+    <object>objects\objForgroundGrid</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmFight</room>
