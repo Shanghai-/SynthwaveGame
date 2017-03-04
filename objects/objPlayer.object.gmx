@@ -325,6 +325,7 @@ if (!moving_left &amp;&amp; !moving_right) {
         wait_for_beat = true;
     } else if (space_down) {
         image_index = 4;
+        alarm[0] = (global.bps / 4) * room_speed;
         alarm[5] = (global.bps / 2) * room_speed;
         var hitspace = global.spot_array[spot_index + (range * attack_direction)];
         hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
