@@ -33,6 +33,7 @@
     <background>background\cyber_city</background>
     <background>background\foreground_grid</background>
     <background>background\menu_window</background>
+    <background>background\menu_sunset</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">

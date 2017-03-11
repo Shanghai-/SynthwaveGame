@@ -219,7 +219,7 @@ beat = beat mod 4;
             <kind>1</kind>
             <string>if (overcharge_bar.cur_pips &gt; 0) {
     overcharge_bar.cur_pips -= 1;
-    alarm[2] = (5 / overcharge_bar.max_pips) * room_speed;
+    alarm[2] = (3 / overcharge_bar.max_pips) * room_speed;
 } else {
     image_index = 0;
     state = player_state.idle;
@@ -459,7 +459,7 @@ if (instance_find(objEnemy, 0).x &lt; x) {
         if (overcharge_bar.cur_pips == overcharge_bar.max_pips) {
             instance_create(0, room_height / 2, objSoloText);
             state = player_state.solo_time;
-            alarm[2] = (5 / overcharge_bar.max_pips) * room_speed;
+            alarm[2] = (3 / overcharge_bar.max_pips) * room_speed;
             exit;
         }
     }
