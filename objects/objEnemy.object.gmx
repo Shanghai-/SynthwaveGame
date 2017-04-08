@@ -73,9 +73,9 @@ next_spot_index = 0;
 
 healthbar = instance_create(10, 10, objBar);
 with (healthbar) {
-    max_pips = 10;
-    cur_pips = 10;
-    base_x = 900;
+    max_pips = 8;
+    cur_pips = 8;
+    base_x = 1024;
     base_y = 70;
     pip_spr = sprEnemyHealthPip;
     text_spr = sprHealthText;
@@ -178,8 +178,6 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
 } else if (beat == 1) {
 
 } else if (beat == 2) {
-        
-} else if (beat == 3) {
     if (abs(player.spot_index - spot_index) == 1) {
         planned_action = choose(enemy_actions.weak, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
         if (planned_action == enemy_actions.weak) {
@@ -215,7 +213,9 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             vulnerable = false;
         }
     }
-    image_index = tell;
+    image_index = tell;        
+} else if (beat == 3) {
+
 }
 </string>
           </argument>
