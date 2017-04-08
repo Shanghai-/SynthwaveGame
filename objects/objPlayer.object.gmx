@@ -82,6 +82,26 @@ shutdown_shader_object = instance_create(0, 0, objShutdownShader);
     <event eventtype="2" enumb="7">
       <action>
         <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Game Over</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -104,6 +124,26 @@ room_goto(roomGameOver);
       </action>
     </event>
     <event eventtype="2" enumb="6">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Shader clearer</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -130,6 +170,26 @@ shaded_bluegreen = false;
     <event eventtype="2" enumb="5">
       <action>
         <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Block/attack state reset</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
         <id>603</id>
         <kind>7</kind>
         <userelative>0</userelative>
@@ -144,7 +204,12 @@ shaded_bluegreen = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (state != player_state.solo_time) {
+            <string>var a_down = keyboard_check(ord('A'));
+if (a_down &amp;&amp; state == player_state.blocking) {
+    alarm[5] = (global.bps / 2) * room_speed;
+    exit;
+}
+if (state != player_state.solo_time) {
     image_index = 0;
     wait_for_beat = false;
     state = player_state.idle;
@@ -156,6 +221,26 @@ shaded_bluegreen = false;
       </action>
     </event>
     <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Quarter Note Beat Counter</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -221,8 +306,10 @@ beat = beat mod 4;
     overcharge_bar.cur_pips -= 1;
     alarm[2] = (3 / overcharge_bar.max_pips) * room_speed;
 } else {
+    show_debug_message("LKFJALKFJ");
     image_index = 0;
     state = player_state.idle;
+    wait_for_beat = false;
 }
 </string>
           </argument>
@@ -246,7 +333,7 @@ beat = beat mod 4;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Beat window expiry timer</string>
+            <string>Counterattack cooldown</string>
           </argument>
         </arguments>
       </action>
@@ -278,6 +365,26 @@ beat = beat mod 4;
       </action>
     </event>
     <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Hurt animation stopper</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -351,8 +458,8 @@ if (!moving_left &amp;&amp; !moving_right) {
     } else if (a_down) {
         image_index = 1;
         state = player_state.countering;
-        //alarm[1] = 6;
-        alarm[1] = 12;
+        alarm[1] = 8;
+        //alarm[1] = 12;
         alarm[5] = (global.bps / 2) * room_speed;
         wait_for_beat = true;
     } else if (space_down) {
