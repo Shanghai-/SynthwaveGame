@@ -117,7 +117,7 @@ shutdown_shader_object = instance_create(0, 0, objShutdownShader);
           <argument>
             <kind>1</kind>
             <string>shutdown_shader_object.active = false;
-room_goto(roomGameOver);
+room_goto(rmGameOver);
 </string>
           </argument>
         </arguments>

@@ -28,6 +28,7 @@
     <sprite>sprites\sprGridGround</sprite>
     <sprite>sprites\sprMenuTriangle</sprite>
     <sprite>sprites\sprGameOver</sprite>
+    <sprite>sprites\sprYouWin</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\cyber_city</background>
@@ -69,6 +70,7 @@
       <object>objects\objOptionsTriangle</object>
     </objects>
     <object>objects\objGameOverMessage</object>
+    <object>objects\objYouWinMessage</object>
     <object>objects\objShutdownShader</object>
     <object>objects\objForgroundGrid</object>
   </objects>
@@ -76,7 +78,8 @@
     <room>rooms\rmMainMenu</room>
     <room>rooms\rmOptions</room>
     <room>rooms\rmFight</room>
-    <room>rooms\roomGameOver</room>
+    <room>rooms\rmGameOver</room>
+    <room>rooms\rmYouWin</room>
   </rooms>
   <constants number="1">
     <constant name="BPM">60</constant>
