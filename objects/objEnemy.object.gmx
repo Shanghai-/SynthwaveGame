@@ -64,6 +64,7 @@ attack_direction = -1;
 range = 1;
 
 hurtbox = noone;
+hitspace = noone;
 image_speed = 0;
 
 moving_left = false;
@@ -235,7 +236,6 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
     if (planned_action != enemy_actions.none) {
         if (planned_action == enemy_actions.weak) {
             image_index = attack;
-            var hitspace = global.spot_array[spot_index + (range * attack_direction)];
             hurtbox = instance_create(hitspace.x , hitspace.y, objHurtboxEnemy);
             //hurtbox = instance_create(x + (20 * attack_direction), hitspace.y, objHurtboxEnemy);
         }
@@ -251,6 +251,9 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             image_xscale = 1;
             attack_direction = 1;
         }
+    }
+    with(hitspace) {
+        sprite = sprSpot;
     }
     
 } else if (beat == 2) {
@@ -269,6 +272,10 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             tell = 1;
             attack = 2;
             range = 1;
+            hitspace = global.spot_array[spot_index + (range * attack_direction)];
+            with (hitspace) {
+                sprite = sprSpotDanger;
+            }
         } else {
             tell = 0;
             can_move = true;

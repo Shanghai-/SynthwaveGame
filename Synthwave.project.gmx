@@ -18,6 +18,7 @@
     <sprite>sprites\sprForeground</sprite>
     <sprite>sprites\sprHurtbox</sprite>
     <sprite>sprites\sprSpot</sprite>
+    <sprite>sprites\sprSpotDanger</sprite>
     <sprite>sprites\sprHealthPip</sprite>
     <sprite>sprites\sprEnemyHealthPip</sprite>
     <sprite>sprites\sprOverchargePip</sprite>
