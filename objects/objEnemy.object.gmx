@@ -277,6 +277,7 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
         attack_direction = 1;
     }
     if (abs(player.spot_index - spot_index) == 1) {
+        //planned_action = enemy_actions.sky;
         planned_action = choose(enemy_actions.long, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
         if (planned_action == enemy_actions.weak) {
             vulnerable = true;
@@ -290,6 +291,8 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             }
         } else if (planned_action == enemy_actions.long) {
             scrEnemyLongPrepare();
+        } else if (planned_action == enemy_actions.sky){
+            instance_create(x, y - 260, objSkyBomb);
         } else {
             tell = 0;
             can_move = true;

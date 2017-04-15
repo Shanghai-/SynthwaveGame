@@ -33,6 +33,7 @@
     <sprite>sprites\sprGameOver</sprite>
     <sprite>sprites\sprYouWin</sprite>
     <sprite>sprites\sprLaserLong</sprite>
+    <sprite>sprites\sprSkyBomb</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\cyber_city</background>
@@ -80,6 +81,7 @@
     <object>objects\objForgroundGrid</object>
     <object>objects\objLaserLong</object>
     <object>objects\objEnemy</object>
+    <object>objects\objSkyBomb</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>
