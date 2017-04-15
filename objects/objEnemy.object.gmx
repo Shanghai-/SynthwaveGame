@@ -281,8 +281,7 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
         attack_direction = 1;
     }
     if (abs(player.spot_index - spot_index) == 1) {
-       //planned_action = choose(enemy_actions.long);
-       planned_action = choose(enemy_actions.long, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
+        planned_action = choose(enemy_actions.long, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
         if (planned_action == enemy_actions.weak) {
             vulnerable = true;
             can_move = false;
@@ -294,43 +293,36 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
                 sprite = sprSpotDanger;
             }
         } else if (planned_action == enemy_actions.long) {
-            vulnerable = true;
-            can_move = false;
-            tell = 1;
-            attack = 2;
-            range = 1;
-            var spots = array_length_1d(global.spot_array);
-            for (var i = spot_index + attack_direction; i &gt;= 0 &amp;&amp; i &lt; spots; i += attack_direction) {
-                var laserhitspace = global.spot_array[i];
-                with (laserhitspace) {
-                    sprite = sprSpotDanger;
-                }
-            }
+            scrEnemyLongPrepare();
         } else {
             tell = 0;
             can_move = true;
         }
     } else {
-        if (player.spot_index - spot_index &gt; 0) {
-            moving_right = true;
-            next_spot_index = spot_index + 1;
-            hspeed = 20; 
-        } else {
-            moving_left = true;
-            next_spot_index = spot_index - 1;
-            hspeed = -20; 
-        }
-        next_spot = global.spot_array[next_spot_index];
-        if (next_spot.occupied) {
-            moving_left = false;
-            moving_right = false;
-            hspeed = 0;
-        } else {
-            planned_action = enemy_actions.move;
-            tell = 0;
-            next_spot.occupied = true;
-            global.spot_array[spot_index].occupied = false;
-            vulnerable = false;
+        planned_action = choose(enemy_actions.long, enemy_actions.move, enemy_actions.move, enemy_actions.move);
+        if (planned_action == enemy_actions.long) {
+            scrEnemyLongPrepare();
+        } else if (planned_action == enemy_actions.move){
+            if (player.spot_index - spot_index &gt; 0) {
+                moving_right = true;
+                next_spot_index = spot_index + 1;
+                hspeed = 20; 
+            } else {
+                moving_left = true;
+                next_spot_index = spot_index - 1;
+                hspeed = -20; 
+            }
+            next_spot = global.spot_array[next_spot_index];
+            if (next_spot.occupied) {
+                moving_left = false;
+                moving_right = false;
+                hspeed = 0;
+            } else {
+                tell = 0;
+                next_spot.occupied = true;
+                global.spot_array[spot_index].occupied = false;
+                vulnerable = false;
+            }
         }
     }
     image_index = tell;        
