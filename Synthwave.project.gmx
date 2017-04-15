@@ -10,6 +10,8 @@
       <sound>sound\oneTwentyBPM</sound>
       <sound>sound\menuTheme</sound>
       <sound>sound\gameSong</sound>
+      <sound>sound\solo</sound>
+      <sound>sound\cymbal</sound>
     </sounds>
   </sounds>
   <sprites name="sprites">

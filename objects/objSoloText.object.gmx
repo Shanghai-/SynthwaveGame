@@ -52,6 +52,8 @@ global.time_stopped = true;
             <kind>1</kind>
             <string>if (x &gt; room_width + sprite_width) {
     global.time_stopped = false;
+    audio_stop_sound(gameSong);
+    audio_play_sound(solo, 0, true);
     instance_destroy();
 } else if (x &gt; (room_width / 2) + (sprite_width / 2) + 40) {
     hspeed = 48;

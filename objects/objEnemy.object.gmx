@@ -82,8 +82,6 @@ with (healthbar) {
     text_spr = sprHealthText;
 }
 
-show_debug_message(healthbar);
-
 shaded_red = false;
 </string>
           </argument>
@@ -362,7 +360,6 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             <string>if (global.time_stopped) {
     if (alarm[4] &gt; 0) alarm[4]++;
     if (alarm[6] &gt; 0) alarm[6]++;
-    exit;
 }
 </string>
           </argument>
@@ -386,7 +383,7 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (vulnerable) {
+            <string>if (vulnerable || !other.blockable) {
     instance_create(x, y, objScreenShake);
     shaded_red = true;
     alarm[6] = 15;
@@ -399,7 +396,7 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
         }
         vulnerable = false;
     }
-} else {    
+} else {
     image_index = 4;
 }
 </string>

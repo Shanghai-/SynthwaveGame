@@ -306,10 +306,15 @@ beat = beat mod 4;
     overcharge_bar.cur_pips -= 1;
     alarm[2] = (3 / overcharge_bar.max_pips) * room_speed;
 } else {
-    show_debug_message("LKFJALKFJ");
     image_index = 0;
     state = player_state.idle;
     wait_for_beat = false;
+    audio_stop_all();
+    audio_play_sound(gameSong, 0, true);
+    alarm[4] = (global.bps / 4) * room_speed;
+    with(instance_find(objEnemy, 0)) {
+        alarm[4] = (global.bps / 4) * room_speed;
+    }
 }
 </string>
           </argument>
@@ -445,6 +450,7 @@ if (state == player_state.solo_time) {
         image_index = 3;
         var hitspace = global.spot_array[spot_index + (range * attack_direction)];
         hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
+        hurtbox.blockable = false;
         can_attack = false;
         alarm[1] = (global.bps / 2) * room_speed;
     }
@@ -468,6 +474,7 @@ if (!moving_left &amp;&amp; !moving_right) {
         alarm[5] = (global.bps / 2) * room_speed;
         var hitspace = global.spot_array[spot_index + (range * attack_direction)];
         hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
+        hurtbox.blockable = true;
         wait_for_beat = true;
     } else if (right_down) {
         next_spot_index = spot_index;
@@ -564,6 +571,7 @@ if (instance_find(objEnemy, 0).x &lt; x) {
     if (overcharge_bar.cur_pips &lt; overcharge_bar.max_pips) {
         overcharge_bar.cur_pips += 1;
         if (overcharge_bar.cur_pips == overcharge_bar.max_pips) {
+            audio_play_sound(cymbal, 1, false);
             instance_create(0, room_height / 2, objSoloText);
             state = player_state.solo_time;
             alarm[2] = (3 / overcharge_bar.max_pips) * room_speed;
