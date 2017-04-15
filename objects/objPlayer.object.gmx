@@ -570,7 +570,7 @@ if (instance_find(objEnemy, 0).x &lt; x) {
             exit;
         }
     }
-} else if (state == player_state.blocking) {
+} else if (state == player_state.blocking || dodging) {
     exit;
 } else if (state == player_state.solo_time) {
     exit;
