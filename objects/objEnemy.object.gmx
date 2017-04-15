@@ -238,7 +238,21 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             hurtbox.blockable = true;
             scrClearSpots();    
         } else if (planned_action == enemy_actions.long) {
-            
+            var spots = array_length_1d(global.spot_array);
+            for (var i = spot_index + attack_direction; i &gt;= 0 &amp;&amp; i &lt; spots; i += attack_direction) {
+                var hitspace = global.spot_array[i];
+                var hbox = instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
+                hbox.blockable = false;
+            }
+            var laserstart = global.spot_array[spot_index];
+            var laserY = laserstart.y - 260;
+            if (attack_direction &lt; 0) {
+                laserX = laserstart.x - 2000;
+            } else {
+                laserX = laserstart.x;
+            }
+            instance_create(laserX, laserY, objLaserLong);
+            scrClearSpots();
         }
     } else {
         vulnerable = false;
