@@ -18,6 +18,7 @@
     <sprite>sprites\sprForeground</sprite>
     <sprite>sprites\sprHurtbox</sprite>
     <sprite>sprites\sprSpot</sprite>
+    <sprite>sprites\sprSpotDanger</sprite>
     <sprite>sprites\sprHealthPip</sprite>
     <sprite>sprites\sprEnemyHealthPip</sprite>
     <sprite>sprites\sprOverchargePip</sprite>
@@ -52,7 +53,6 @@
   </fonts>
   <objects name="objects">
     <object>objects\objPlayer</object>
-    <object>objects\objEnemy</object>
     <object>objects\objRoomInit</object>
     <object>objects\objHurtboxEnemy</object>
     <object>objects\objHurtboxPlayer</object>
@@ -75,6 +75,7 @@
     <object>objects\objShutdownShader</object>
     <object>objects\objForgroundGrid</object>
     <object>objects\objLaserLong</object>
+    <object>objects\objEnemy</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>
