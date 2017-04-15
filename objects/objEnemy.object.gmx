@@ -64,7 +64,6 @@ attack_direction = -1;
 range = 1;
 
 hurtbox = noone;
-hitspace = noone;
 image_speed = 0;
 
 moving_left = false;
@@ -267,9 +266,13 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             attack_direction = 1;
         }
     }
-    /*with(hitspace) {
-        sprite = sprSpot;
-    }*/
+    var spots = array_length_1d(global.spot_array);
+    for (var i = 0; i &lt; spots; i++) {
+        var space = global.spot_array[i];
+        with (space) {
+            sprite = sprSpot;
+        }
+    }
     
 } else if (beat == 2) {
     if (instance_find(objPlayer, 0).x &lt; x) {
@@ -298,6 +301,13 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             tell = 1;
             attack = 2;
             range = 1;
+            var spots = array_length_1d(global.spot_array);
+            for (var i = spot_index + attack_direction; i &gt;= 0 &amp;&amp; i &lt; spots; i += attack_direction) {
+                var laserhitspace = global.spot_array[i];
+                with (laserhitspace) {
+                    sprite = sprSpotDanger;
+                }
+            }
         } else {
             tell = 0;
             can_move = true;
