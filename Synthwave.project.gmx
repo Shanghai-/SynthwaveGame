@@ -44,6 +44,7 @@
   <scripts name="scripts">
     <script>scripts\scrGlobalVars.gml</script>
     <script>scripts\scrEnemyLongPrepare.gml</script>
+    <script>scripts\scrClearSpots.gml</script>
   </scripts>
   <shaders name="shaders">
     <shader type="GLSLES">shaders\shaderDamage.shader</shader>
