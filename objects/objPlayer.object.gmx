@@ -562,7 +562,7 @@ if (instance_find(objEnemy, 0).x &lt; x) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (state == player_state.countering) {
+            <string>if (state == player_state.countering &amp;&amp; other.blockable) {
     shaded_bluegreen = true;
     alarm[6] = 15;
     /* var hitspace = global.spot_array[spot_index + 1];
@@ -578,9 +578,9 @@ if (instance_find(objEnemy, 0).x &lt; x) {
             exit;
         }
     }
-} else if (state == player_state.blocking || dodging) {
+} else if (state == player_state.blocking &amp;&amp; other.blockable) {
     exit;
-} else if (state == player_state.solo_time) {
+} else if (state == player_state.solo_time || dodging) {
     exit;
 } else {
     if (alive) {

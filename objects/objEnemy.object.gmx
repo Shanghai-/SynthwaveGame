@@ -235,21 +235,9 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             image_index = attack;
             var hitspace = global.spot_array[spot_index + (range * attack_direction)];
             hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
+            hurtbox.blockable = true;
         } else if (planned_action == enemy_actions.long) {
-            var spots = array_length_1d(global.spot_array);
             
-            for (var i = spot_index + attack_direction; i &gt;= 0 &amp;&amp; i &lt; spots; i += attack_direction) {
-                var hitspace = global.spot_array[i];
-                instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
-            }
-            var laserstart = global.spot_array[spot_index];
-            var laserY = laserstart.y - 260;
-            if (attack_direction &lt; 0) {
-                laserX = laserstart.x - 2000;
-            } else {
-                laserX = laserstart.x;
-            }
-            instance_create(laserX, laserY, objLaserLong);
         }
     } else {
         vulnerable = false;
@@ -281,7 +269,6 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
         attack_direction = 1;
     }
     if (abs(player.spot_index - spot_index) == 1) {
-       //planned_action = choose(enemy_actions.long);
        planned_action = choose(enemy_actions.long, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
         if (planned_action == enemy_actions.weak) {
             vulnerable = true;
@@ -294,6 +281,7 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
                 sprite = sprSpotDanger;
             }
         } else if (planned_action == enemy_actions.long) {
+            alarm[0] = (global.bps) * room_speed;
             vulnerable = true;
             can_move = false;
             tell = 1;
@@ -345,6 +333,63 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
         }
     }
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>Long Attack charge timer</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var spots = array_length_1d(global.spot_array);
+            
+for (var i = spot_index + attack_direction; i &gt;= 0 &amp;&amp; i &lt; spots; i += attack_direction) {
+    var hitspace = global.spot_array[i];
+    var hbox = instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
+    hbox.blockable = false;
+}
+var laserstart = global.spot_array[spot_index];
+var laserY = laserstart.y - 260;
+if (attack_direction &lt; 0) {
+    laserX = laserstart.x - 2000;
+} else {
+    laserX = laserstart.x;
+}
+instance_create(laserX, laserY, objLaserLong);
 </string>
           </argument>
         </arguments>
