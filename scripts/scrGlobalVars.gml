@@ -4,7 +4,8 @@ global.time_stopped = false;
 enum enemy_actions {
     none,
     weak,
-    move
+    move,
+    long
 }
 
 enum player_state {

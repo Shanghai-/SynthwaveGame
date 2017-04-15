@@ -29,6 +29,7 @@
     <sprite>sprites\sprMenuTriangle</sprite>
     <sprite>sprites\sprGameOver</sprite>
     <sprite>sprites\sprYouWin</sprite>
+    <sprite>sprites\sprLaserLong</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\cyber_city</background>
@@ -73,6 +74,7 @@
     <object>objects\objYouWinMessage</object>
     <object>objects\objShutdownShader</object>
     <object>objects\objForgroundGrid</object>
+    <object>objects\objLaserLong</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>

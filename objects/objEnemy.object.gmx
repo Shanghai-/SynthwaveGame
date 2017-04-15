@@ -214,6 +214,22 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
             image_index = attack;
             var hitspace = global.spot_array[spot_index + (range * attack_direction)];
             hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
+        } else if (planned_action == enemy_actions.long) {
+            var spots = array_length_1d(global.spot_array);
+            
+            for (var i = spot_index + attack_direction; i &gt;= 0 &amp;&amp; i &lt; spots; i += attack_direction) {
+                var hitspace = global.spot_array[i];
+                instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
+            }
+            var laserstart = global.spot_array[spot_index];
+            var laserY = laserstart.y - 260;
+            if (attack_direction &lt; 0) {
+                laserX = laserstart.x - 2000;
+            } else {
+                laserX = laserstart.x;
+            }
+            instance_create(laserX, laserY, objLaserLong);
+            
         }
     } else {
         vulnerable = false;
@@ -222,8 +238,15 @@ if (moving_right &amp;&amp; x &gt;= next_spot.x) {
 
 } else if (beat == 2) {
     if (abs(player.spot_index - spot_index) == 1) {
-        planned_action = choose(enemy_actions.weak, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
+       planned_action = choose(enemy_actions.long);
+       //planned_action = choose(enemy_actions.long, enemy_actions.weak, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
         if (planned_action == enemy_actions.weak) {
+            vulnerable = true;
+            can_move = false;
+            tell = 1;
+            attack = 2;
+            range = 1;
+        } else if (planned_action == enemy_actions.long) {
             vulnerable = true;
             can_move = false;
             tell = 1;
