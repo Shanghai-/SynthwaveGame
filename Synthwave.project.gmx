@@ -83,6 +83,7 @@
     <object>objects\objLaserLong</object>
     <object>objects\objEnemy</object>
     <object>objects\objSkyBomb</object>
+    <object>objects\objWeakAttack</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>

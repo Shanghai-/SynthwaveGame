@@ -1,7 +1,5 @@
-//alarm[0] = (global.bps) * room_speed;
 vulnerable = true;
 can_move = false;
-tell = 1;
 attack = 2;
 range = 1;
 var spots = array_length_1d(global.spot_array);
