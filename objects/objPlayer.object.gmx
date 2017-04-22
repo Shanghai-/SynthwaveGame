@@ -206,7 +206,7 @@ shaded_bluegreen = false;
             <kind>1</kind>
             <string>var a_down = keyboard_check(ord('A'));
 if (a_down &amp;&amp; state == player_state.blocking) {
-    alarm[5] = (global.bps / 2) * room_speed;
+    alarm[5] = global.quarter_note * 2;
     exit;
 }
 if (state != player_state.solo_time) {
@@ -311,7 +311,7 @@ beat = beat mod 4;
     wait_for_beat = false;
     audio_stop_all();
     audio_play_sound(gameSong, 0, true);
-    alarm[4] = (global.bps / 4) * room_speed;
+    alarm[4] = global.quarter_note;
     with(instance_find(objEnemy, 0)) {
         alarm[4] = (global.bps / 4) * room_speed;
     }
@@ -471,7 +471,7 @@ if (!moving_left &amp;&amp; !moving_right) {
         state = player_state.countering;
         alarm[1] = 8;
         //alarm[1] = 12;
-        alarm[5] = (global.bps / 2) * room_speed;
+        alarm[5] = global.quarter_note * 2;
         wait_for_beat = true;
     } else if (space_down) {
         image_index = 4;

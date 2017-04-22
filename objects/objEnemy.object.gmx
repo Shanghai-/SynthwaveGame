@@ -72,13 +72,35 @@ next_spot_index = 0;
 
 healthbar = instance_create(10, 10, objBar);
 with (healthbar) {
-    max_pips = 9;
-    cur_pips = 9;
-    base_x = 990;
+    max_pips = 10;
+    cur_pips = 10;
+    base_x = 950;
     base_y = 70;
     pip_spr = sprEnemyHealthPip;
     text_spr = sprHealthText;
 }
+
+healthbar2 = instance_create(10, 10, objBar);
+with (healthbar2) {
+    max_pips = 10;
+    cur_pips = 10;
+    base_x = 950;
+    base_y = 120;
+    pip_spr = sprEnemyHealthPip;
+    text_spr = sprHealthText;
+    draw_bar_text = false;
+}
+/*
+healthbar3 = instance_create(10, 10, objBar);
+with (healthbar3) {
+    max_pips = 10;
+    cur_pips = 10;
+    base_x = 950;
+    base_y = 170;
+    pip_spr = sprEnemyHealthPip;
+    text_spr = sprHealthText;
+    draw_bar_text = false;
+}*/
 
 shaded_red = false;
 alive = true;
@@ -318,11 +340,11 @@ if (beats_till_planned_action &lt;= 0) {
         } else if (planned_action == enemy_actions.long) {
             scrEnemyLongPrepare();
             image_index = 1;
-            beats_till_planned_action = 2;
+            beats_till_planned_action = 4;
         } else if (planned_action == enemy_actions.sky){
             scrEnemySkyPrepare();
             image_index = 1;
-            beats_till_planned_action = 2;
+            beats_till_planned_action = 4;
         } else if (planned_action == enemy_actions.move) {
             if (player.spot_index - spot_index &gt; 0) {
                 moving_right = true;
@@ -414,16 +436,17 @@ if (global.time_stopped) {
     instance_create(x, y, objScreenShake);
     shaded_red = true;
     alarm[6] = 15;
+    vulnerable = false;
     if (healthbar.cur_pips &gt; 0) {
         healthbar.cur_pips -= 1;
-        if (healthbar.cur_pips &lt; 1) {
+    } else if (healthbar2.cur_pips &gt; 0) {
+        healthbar2.cur_pips -= 1;
+        if (healthbar2.cur_pips &lt; 1) {
             alive = false;
             alarm[7] = room_speed * 2;
             effect_create_above(ef_explosion, x, y - 200, 2, c_white);
-            global.time_stopped = true;
             alarm[1] = 1.5 * room_speed;
         }
-        vulnerable = false;
     }
 } else {
     image_index = 4;

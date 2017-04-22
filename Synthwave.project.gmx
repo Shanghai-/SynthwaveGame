@@ -9,10 +9,10 @@
       <sound>sound\click</sound>
       <sound>sound\oneTwentyBPM</sound>
       <sound>sound\menuTheme</sound>
-      <sound>sound\gameSong</sound>
+      <sound>sound\gameSongOld</sound>
       <sound>sound\solo</sound>
       <sound>sound\cymbal</sound>
-      <sound>sound\perturbators_theme</sound>
+      <sound>sound\gameSong</sound>
     </sounds>
   </sounds>
   <sprites name="sprites">
