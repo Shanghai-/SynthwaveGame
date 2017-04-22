@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>active = true;
+duration_ticks = global.quarter_note * 2;
 ticks = duration_ticks;
 </string>
           </argument>
