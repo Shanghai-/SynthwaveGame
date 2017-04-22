@@ -81,8 +81,10 @@ with (healthbar) {
 }
 
 shaded_red = false;
+alive = true;
 
 sky_attack_spots = ds_list_create();
+
 </string>
           </argument>
         </arguments>
@@ -211,7 +213,12 @@ sky_attack_spots = ds_list_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[4] = (global.bps / 4) * room_speed;
+            <string>if (alive) {
+    alarm[4] = (global.bps / 4) * room_speed;
+} else {
+    exit;
+}
+
 
 beats_till_planned_action--;
 
@@ -369,8 +376,11 @@ show_debug_message(planned_action);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.time_stopped) {
-    if (alarm[0] &gt; 0) alarm[0]++;
+            <string>if (!alive) {
+    image_alpha -= 0.02;
+}
+
+if (global.time_stopped) {
     if (alarm[4] &gt; 0) alarm[4]++;
     if (alarm[6] &gt; 0) alarm[6]++;
 }
@@ -397,20 +407,21 @@ show_debug_message(planned_action);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (vulnerable || !other.blockable) {
+            <string>if (alive &amp;&amp; (vulnerable || !other.blockable)) {
     instance_create(x, y, objScreenShake);
     shaded_red = true;
-    alarm[6] = 15;
+    healthbar.cur_pips -= 1;
     if (healthbar.cur_pips &gt; 0) {
-        healthbar.cur_pips -= 1;
-        if (healthbar.cur_pips &lt; 1) {
-            alarm[7] = 1;
-            //global.time_stopped = true;
-            //alarm[1] = 1.5 * room_speed;
-        }
-        vulnerable = false;
+        alarm[6] = 15;
+    } else {
+        alive = false;
+        alarm[7] = room_speed * 2;
+        effect_create_above(ef_explosion, x, y - 200, 2, c_white);
+        //global.time_stopped = true;
+        //alarm[1] = 1.5 * room_speed;
     }
-} else {
+    vulnerable = false;
+} else if (alive) {
     image_index = 4;
 }
 </string>
