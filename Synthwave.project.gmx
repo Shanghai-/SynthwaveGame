@@ -12,6 +12,7 @@
       <sound>sound\gameSong</sound>
       <sound>sound\solo</sound>
       <sound>sound\cymbal</sound>
+      <sound>sound\perturbators_theme</sound>
     </sounds>
   </sounds>
   <sprites name="sprites">
@@ -97,7 +98,7 @@
     <room>rooms\rmYouWin</room>
   </rooms>
   <constants number="1">
-    <constant name="BPM">120</constant>
+    <constant name="BPM">132</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

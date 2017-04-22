@@ -457,7 +457,7 @@ if (state == player_state.solo_time) {
         hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
         hurtbox.blockable = false;
         can_attack = false;
-        alarm[1] = (global.bps / 2) * room_speed;
+        alarm[1] = global.quarter_note;
     }
     exit;
 }

@@ -57,7 +57,7 @@ objEnemy.player = objPlayer;
 enemy_spot.occupied = true;
 
 audio_stop_all();
-audio_play_sound(gameSong, 0, true);
+audio_play_sound(perturbators_theme, 0, true);
 </string>
           </argument>
         </arguments>
