@@ -437,6 +437,11 @@ var left_down = keyboard_check(vk_left);
 var space_down = keyboard_check(vk_space);
 var a_down = keyboard_check(ord('A'));
 
+if (!alive) {
+    image_alpha -= 0.05;
+    exit;
+}
+
 if (global.time_stopped) {
     if (alarm[0] &gt; 0) alarm[0]++;
     if (alarm[2] &gt; 0) alarm[2]++;
@@ -583,19 +588,19 @@ if (instance_find(objEnemy, 0).x &lt; x) {
 } else if (state == player_state.solo_time || dodging) {
     exit;
 } else {
-    if (alive) {
+    if (alive) {    
         instance_create(x, y, objScreenShake);
         image_index = 2;
-        if (healthbar.cur_pips &gt; 1) {
-            healthbar.cur_pips -= 1;
+        healthbar.cur_pips -= 1;
+        shaded_red = true;
+        if (healthbar.cur_pips &gt; 0) {
+            alarm[0] = 30;
+            alarm[6] = 15;
         } else {
             alive = false;
             shutdown_shader_object.active = true;
             alarm[7] = room_speed * 2;
         }
-        alarm[0] = 30;
-        alarm[6] = 15;
-        shaded_red = true;
     }
 }
 </string>
@@ -620,7 +625,8 @@ if (instance_find(objEnemy, 0).x &lt; x) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (shaded_red) {
+            <string>
+if (shaded_red) {
     shader_set(shaderDamage);
     draw_self();
     shader_reset();  
