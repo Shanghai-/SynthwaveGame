@@ -52,6 +52,7 @@
   </views>
   <instances>
     <instance objName="objYouWinMessage" x="0" y="0" name="inst_191611FB" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objAnyKey" x="32" y="32" name="inst_B70A9B14" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
