@@ -26,7 +26,6 @@
           <argument>
             <kind>1</kind>
             <string>active = true;
-duration_ticks = ((BPM / 60) * room_speed) / 2;
 ticks = duration_ticks;
 </string>
           </argument>

@@ -97,7 +97,7 @@
     <room>rooms\rmYouWin</room>
   </rooms>
   <constants number="1">
-    <constant name="BPM">60</constant>
+    <constant name="BPM">120</constant>
   </constants>
   <help>
     <rtf>help.rtf</rtf>

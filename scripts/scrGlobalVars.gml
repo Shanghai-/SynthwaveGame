@@ -1,4 +1,6 @@
-global.bpm = 60;
+show_debug_message("scrGlobalVars");
+
+global.bpm = BPM;
 global.time_stopped = false;
 
 enum enemy_actions {

@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[4] = (global.bps / 4) * room_speed;
+            <string>alarm[4] = global.quarter_note;
 
 depth = -2;
 
@@ -257,7 +257,7 @@ if (state != player_state.solo_time) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[4] = (global.bps / 4) * room_speed;
+            <string>alarm[4] = global.quarter_note;
 beat++;
 beat = beat mod 4;
 </string>
@@ -475,8 +475,8 @@ if (!moving_left &amp;&amp; !moving_right) {
         wait_for_beat = true;
     } else if (space_down) {
         image_index = 4;
-        alarm[0] = (global.bps / 4) * room_speed;
-        alarm[5] = (global.bps / 2) * room_speed;
+        alarm[0] = global.quarter_note;
+        alarm[5] = global.quarter_note;
         var hitspace = global.spot_array[spot_index + (range * attack_direction)];
         hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
         hurtbox.blockable = true;
