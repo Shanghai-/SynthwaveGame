@@ -81,6 +81,7 @@ with (healthbar) {
 }
 
 shaded_red = false;
+alive = true;
 
 sky_attack_spots = ds_list_create();
 </string>
@@ -416,9 +417,11 @@ if (global.time_stopped) {
     if (healthbar.cur_pips &gt; 0) {
         healthbar.cur_pips -= 1;
         if (healthbar.cur_pips &lt; 1) {
-            alarm[7] = 1;
-            //global.time_stopped = true;
-            //alarm[1] = 1.5 * room_speed;
+            alive = false;
+            alarm[7] = room_speed * 2;
+            effect_create_above(ef_explosion, x, y - 200, 2, c_white);
+            global.time_stopped = true;
+            alarm[1] = 1.5 * room_speed;
         }
         vulnerable = false;
     }
