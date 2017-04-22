@@ -211,7 +211,11 @@ sky_attack_spots = ds_list_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[4] = (global.bps / 4) * room_speed;
+            <string>if (alive) {
+    alarm[4] = global.quarter_note;
+} else {
+    exit;
+}
 
 beats_till_planned_action--;
 
@@ -369,8 +373,16 @@ show_debug_message(planned_action);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (global.time_stopped) {
-    if (alarm[0] &gt; 0) alarm[0]++;
+            <string>if (!alive) {
+    image_alpha -= 0.02;
+}
+
+if (moving_right &amp;&amp; x &gt;= next_spot.x || moving_left &amp;&amp; x &lt;= next_spot.x) {
+    hspeed = 0;
+    x = next_spot.x;
+}
+
+if (global.time_stopped) {
     if (alarm[4] &gt; 0) alarm[4]++;
     if (alarm[6] &gt; 0) alarm[6]++;
 }
