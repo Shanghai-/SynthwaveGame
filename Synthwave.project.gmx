@@ -39,7 +39,8 @@
     <background>background\cyber_city</background>
     <background>background\foreground_grid</background>
     <background>background\menu_window</background>
-    <background>background\menu_sunset</background>
+    <background>background\menu_bg</background>
+    <background>background\controls</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -72,9 +73,11 @@
       <object>objects\btnSFXVol</object>
       <object>objects\btnBack</object>
       <object>objects\btnOptions</object>
+      <object>objects\btnControls</object>
       <object>objects\btnExit</object>
       <object>objects\objMenuTriangle</object>
       <object>objects\objOptionsTriangle</object>
+      <object>objects\objAnyKey</object>
     </objects>
     <object>objects\objGameOverMessage</object>
     <object>objects\objYouWinMessage</object>
@@ -87,6 +90,7 @@
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>
+    <room>rooms\rmControls</room>
     <room>rooms\rmOptions</room>
     <room>rooms\rmFight</room>
     <room>rooms\rmGameOver</room>

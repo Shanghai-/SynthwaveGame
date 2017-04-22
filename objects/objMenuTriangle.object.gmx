@@ -25,12 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>y_positions[0] = 430;
+            <string>y_positions[0] = 460;
 y_positions[1] = 530;
-y_positions[2] = 630;
+y_positions[2] = 600;
+y_positions[3] = 670;
 buttons[0] = instance_find(btnPlay, 0);
-buttons[1] = instance_find(btnOptions, 0);
-buttons[2] = instance_find(btnExit, 0);
+buttons[1] = instance_find(btnControls, 0);
+buttons[2] = instance_find(btnOptions, 0);
+buttons[3] = instance_find(btnExit, 0);
 my_position = 0;
 
 x = room_width / 2 - 200;
@@ -83,18 +85,21 @@ cooldown = false;
             <kind>1</kind>
             <string>var up_down = keyboard_check(vk_up);
 var down_down = keyboard_check(vk_down);
-var space_down = keyboard_check_pressed(vk_space);
+var select_down = keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_enter);
 
 if (!cooldown) {
-    if (space_down) {
+    if (select_down) {
         switch (my_position) {
             case 0:
                 room_goto(rmFight);
                 break;
             case 1:
-                room_goto(rmOptions);
+                room_goto(rmControls);
                 break;
             case 2:
+                room_goto(rmOptions);
+                break;
+            case 3:
                 game_end();
                 break;
         }
@@ -117,7 +122,7 @@ if (!cooldown) {
             myColor = make_color_rgb(91, 158, 165);
         }
         my_position += 1;
-        if (my_position == 3) {
+        if (my_position == 4) {
             my_position = 0;
         }
         with (buttons[my_position]) {
