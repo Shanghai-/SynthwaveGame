@@ -5,7 +5,9 @@ enum enemy_actions {
     none,
     weak,
     move,
-    long
+    long,
+    sky,
+    choose_action
 }
 
 enum player_state {
