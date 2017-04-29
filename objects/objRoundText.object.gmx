@@ -94,7 +94,7 @@ global.time_stopped = true;
         <arguments>
           <argument>
             <kind>13</kind>
-            <string>15783207</string>
+            <string>15783208</string>
           </argument>
         </arguments>
       </action>
@@ -115,8 +115,6 @@ global.time_stopped = true;
           <argument>
             <kind>1</kind>
             <string>draw_rectangle(0, y - rect_height / 2, room_width, y + rect_height / 2, false);
-draw_sprite_ext(sprSoloGlow, 0, 0, y - rect_height / 2, 1, -1, 0, c_white, 1);
-draw_sprite(sprSoloGlow, 0, 0, y + rect_height / 2);
 </string>
           </argument>
         </arguments>
@@ -153,7 +151,7 @@ draw_sprite(sprSoloGlow, 0, 0, y + rect_height / 2);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>Do nothing</string>
+            <string>Do nothing (overrides default draw)</string>
           </argument>
         </arguments>
       </action>

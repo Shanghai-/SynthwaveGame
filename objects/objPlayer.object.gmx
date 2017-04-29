@@ -32,6 +32,7 @@ depth = -2;
 moving_left = false;
 moving_right = false;
 dodging = false;
+hurt = false;
 spot_index = 0;
 next_spot_index = 0;
 can_attack = true;
@@ -571,11 +572,9 @@ if (instance_find(objEnemy, 0).x &lt; x) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (state == player_state.countering &amp;&amp; other.blockable) {
+            <string>/* if (state == player_state.countering &amp;&amp; other.blockable) {
     shaded_bluegreen = true;
     alarm[6] = 15;
-    /* var hitspace = global.spot_array[spot_index + 1];
-    instance_create(hitspace.x, hitspace.y, objHurtboxPlayer); */
     state = player_state.blocking;
     if (overcharge_bar.cur_pips &lt; overcharge_bar.max_pips) {
         overcharge_bar.cur_pips += 1;
@@ -607,13 +606,70 @@ if (instance_find(objEnemy, 0).x &lt; x) {
             alarm[7] = room_speed * 2;
         }
     }
-}
+} */
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="4" ename="objLaserLong">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/* if (state == player_state.countering &amp;&amp; other.blockable) {
+    shaded_bluegreen = true;
+    alarm[6] = 15;
+    state = player_state.blocking;
+    if (overcharge_bar.cur_pips &lt; overcharge_bar.max_pips) {
+        overcharge_bar.cur_pips += 1;
+        if (overcharge_bar.cur_pips == overcharge_bar.max_pips) {
+            audio_play_sound(cymbal, 1, false);
+            instance_create(0, room_height / 2, objSoloText);
+            state = player_state.solo_time;
+            alarm[2] = (3 / overcharge_bar.max_pips) * room_speed;
+            exit;
+        }
+    }
+} else if (state == player_state.blocking &amp;&amp; other.blockable) {
+    exit;
+} else if (state == player_state.solo_time || dodging || hurt) {
+    exit;
+} else {
+    hurt = true;
+    if (alive) {
+        instance_create(x, y, objScreenShake);
+        image_index = 2;
+        healthbar.cur_pips -= 1;
+        shaded_red = true;
+        if (healthbar.cur_pips &gt; 0) {
+            alarm[0] = global.quarter_note * 2;
+            alarm[6] = 15;
+        } else {
+            alive = false;
+            shutdown_shader_object.active = true;
+            alarm[7] = room_speed * 2;
+        }
+    }
+} */
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="objHurtboxEnemy">
       <action>
         <libid>1</libid>
         <id>603</id>

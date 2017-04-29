@@ -325,6 +325,7 @@ if (beats_till_planned_action &lt;= 0) {
         hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
         hurtbox.blockable = true;
         var bomb = instance_create(hitspace.x - 10, hitspace.y, objWeakAttack);
+        bomb.blockable = true;
         bomb.parent_enemy = id;
         scrClearSpots();
         planned_action = enemy_actions.choose_action;
@@ -342,7 +343,8 @@ if (beats_till_planned_action &lt;= 0) {
         } else {
             laserX = laserstart.x;
         }
-        instance_create(laserX, laserY, objLaserLong);
+        var laser = instance_create(laserX, laserY, objLaserLong);
+        laser.blockable = false;
         scrClearSpots();
         planned_action = enemy_actions.choose_action;
         beats_till_planned_action = 2;
@@ -386,7 +388,11 @@ if (beats_till_planned_action &lt;= 0) {
             if (abs(player.spot_index - spot_index) == 1) {
                 planned_action = choose(enemy_actions.sky, enemy_actions.long, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
             } else {
-                planned_action = choose(enemy_actions.sky, enemy_actions.long, enemy_actions.move, enemy_actions.move, enemy_actions.move);
+                if (spot_index &gt; 0 &amp;&amp; spot_index &lt; global.num_spots - 2) {
+                    planned_action = choose(enemy_actions.sky, enemy_actions.long, enemy_actions.move, enemy_actions.move, enemy_actions.move);
+                } else {
+                    planned_action = choose(enemy_actions.sky, enemy_actions.sky, enemy_actions.move, enemy_actions.move, enemy_actions.move);
+                }
             }
         } else if (difficulty == 4) {
             // NIGHTMARE MODE
@@ -505,7 +511,8 @@ if (global.time_stopped) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (vulnerable || !other.blockable) {
+            <string>if (!alive) exit;
+if (vulnerable || !other.blockable) {
     instance_create(x, y, objScreenShake);
     shaded_red = true;
     alarm[6] = 15;
@@ -513,7 +520,8 @@ if (global.time_stopped) {
     if (healthbars[bar_index].cur_pips &gt; 0) {
         healthbars[bar_index].cur_pips -= 1;
     } else {
-        if (++bar_index == array_length_1d(healthbars)) {
+        bar_index++;
+        if (bar_index &gt;= array_length_1d(healthbars)) {
             alive = false;
             alarm[7] = room_speed * 2;
             effect_create_above(ef_explosion, x, y - 200, 2, c_white);
