@@ -21,5 +21,6 @@ enum player_state {
     countering,
     attacking,
     resting,
-    solo_time
+    solo_time,
+    hurt
 }
