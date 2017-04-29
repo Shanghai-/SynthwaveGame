@@ -65,7 +65,8 @@ var select_down = keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_
 if (select_down) {
     switch (my_position) {
         case 0:
-            room_goto(rmFight);
+            global.difficulty = 0;
+            room_goto(rmEasy);
             break;
         case 1:
             room_goto(rmControls);

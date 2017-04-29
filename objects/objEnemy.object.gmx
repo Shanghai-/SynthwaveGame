@@ -48,11 +48,8 @@
             <string>alarm[4] = 1;
 beat = 0;
 
+image_speed = 0;
 depth = -1;
-
-tell = 0;
-
-vulnerable = false;
 
 position = global.num_spots - 1;
 space = global.spot_array[position];
@@ -61,34 +58,80 @@ planned_action = enemy_actions.choose_action;
 beats_till_planned_action = 0;
 attack_direction = -1;
 range = 1;
+tell = 0;
 
 hurtbox = noone;
-image_speed = 0;
+vulnerable = false;
 
 moving_left = false;
 moving_right = false;
 
 next_spot_index = 0;
+healthbars[0] = noone;
+bar_index = 0;
 
-healthbar = instance_create(10, 10, objBar);
-with (healthbar) {
-    max_pips = 10;
-    cur_pips = 10;
-    base_x = 950;
-    base_y = 70;
-    pip_spr = sprEnemyHealthPip;
-    text_spr = sprHealthText;
+if (global.difficulty == 1) {
+    var healthbar = instance_create(10, 10, objBar);
+    with (healthbar) {
+        max_pips = 8;
+        cur_pips = 8;
+        base_x = 950;
+        base_y = 70;
+        pip_spr = sprEnemyHealthPip;
+        text_spr = sprHealthText;
+    }
+    healthbars[0] = healthbar;
 }
 
-healthbar2 = instance_create(10, 10, objBar);
-with (healthbar2) {
-    max_pips = 10;
-    cur_pips = 10;
-    base_x = 950;
-    base_y = 120;
-    pip_spr = sprEnemyHealthPip;
-    text_spr = sprHealthText;
-    draw_bar_text = false;
+if (global.difficulty == 2) {
+    var healthbar = instance_create(10, 10, objBar);
+    with (healthbar) {
+        max_pips = 6;
+        cur_pips = 6;
+        base_x = 950;
+        base_y = 70;
+        pip_spr = sprEnemyHealthPip;
+        text_spr = sprHealthText;
+    }
+    
+    healthbars[0] = healthbar;
+    
+    var healthbar2 = instance_create(10, 10, objBar);
+    with (healthbar2) {
+        max_pips = 6;
+        cur_pips = 6;
+        base_x = 950;
+        base_y = 120;
+        pip_spr = sprEnemyHealthPip;
+        text_spr = sprHealthText;
+        draw_bar_text = false;
+    }
+    healthbars[1] = healthbar2;
+}
+
+if (global.difficulty == 3) {
+    var healthbar = instance_create(10, 10, objBar);
+    with (healthbar) {
+        max_pips = 10;
+        cur_pips = 10;
+        base_x = 950;
+        base_y = 70;
+        pip_spr = sprEnemyHealthPip;
+        text_spr = sprHealthText;
+    }
+    healthbars[0] = healthbar;
+    
+    var healthbar2 = instance_create(10, 10, objBar);
+    with (healthbar2) {
+        max_pips = 10;
+        cur_pips = 10;
+        base_x = 950;
+        base_y = 120;
+        pip_spr = sprEnemyHealthPip;
+        text_spr = sprHealthText;
+        draw_bar_text = false;
+    }
+    healthbars[1] = healthbar;
 }
 /*
 healthbar3 = instance_create(10, 10, objBar);
@@ -148,7 +191,7 @@ sky_attack_spots = ds_list_create();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_goto(rmYouWin);
+            <string>room_goto_next();
 </string>
           </argument>
         </arguments>
@@ -287,8 +330,7 @@ if (beats_till_planned_action &lt;= 0) {
         planned_action = enemy_actions.choose_action;
         beats_till_planned_action = 2;    
     } else if (planned_action == enemy_actions.long) {
-        var spots = array_length_1d(global.spot_array);
-        for (var i = spot_index + attack_direction; i &gt;= 0 &amp;&amp; i &lt; spots; i += attack_direction) {
+        for (var i = spot_index + attack_direction; i &gt;= 0 &amp;&amp; i &lt; global.num_spots; i += attack_direction) {
             var hitspace = global.spot_array[i];
             var hbox = instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
             hbox.blockable = false;
@@ -305,8 +347,7 @@ if (beats_till_planned_action &lt;= 0) {
         planned_action = enemy_actions.choose_action;
         beats_till_planned_action = 2;
     } else if (planned_action == enemy_actions.sky) {
-        var spots = array_length_1d(global.spot_array);
-        for (var i = 0; i &lt; spots; i += 1) {
+        for (var i = 0; i &lt; global.num_spots; i += 1) {
             var hitspace = global.spot_array[i];
             if (hitspace.sprite == sprSpotDanger) {
                 var hbox = instance_create(hitspace.x, hitspace.y, objHurtboxEnemy);
@@ -322,11 +363,43 @@ if (beats_till_planned_action &lt;= 0) {
         beats_till_planned_action = 2;
     } else if (planned_action == enemy_actions.choose_action) {
         image_index = 0;
-        if (abs(player.spot_index - spot_index) == 1) {
-            planned_action = choose(enemy_actions.sky, enemy_actions.long, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);    
+        if (difficulty == 1) {
+            // EASY MODE
+            if (abs(player.spot_index - spot_index) == 1) {
+                planned_action = choose(enemy_actions.weak, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
+            } else {
+                planned_action = choose(enemy_actions.weak, enemy_actions.move, enemy_actions.weak, enemy_actions.move);
+            }
+        } else if (difficulty == 2) {
+            // MEDIUM MODE
+            if (abs(player.spot_index - spot_index) == 1) {
+                planned_action = choose(enemy_actions.long, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
+            } else {
+                if (spot_index &gt; 0 &amp;&amp; spot_index &lt; global.num_spots - 2) {
+                    planned_action = choose(enemy_actions.long, enemy_actions.move, enemy_actions.long);
+                } else {
+                    planned_action = enemy_actions.move;
+                }
+            }
+        } else if (difficulty == 3) {
+            // HARD MODE
+            if (abs(player.spot_index - spot_index) == 1) {
+                planned_action = choose(enemy_actions.sky, enemy_actions.long, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
+            } else {
+                planned_action = choose(enemy_actions.sky, enemy_actions.long, enemy_actions.move, enemy_actions.move, enemy_actions.move);
+            }
+        } else if (difficulty == 4) {
+            // NIGHTMARE MODE
+            if (abs(player.spot_index - spot_index) == 1) {
+                planned_action = choose(enemy_actions.sky, enemy_actions.long, enemy_actions.none, enemy_actions.weak, enemy_actions.weak);
+            } else {
+                planned_action = choose(enemy_actions.sky, enemy_actions.long, enemy_actions.move, enemy_actions.move, enemy_actions.move);
+            }
         } else {
-            planned_action = choose(enemy_actions.sky, enemy_actions.long, enemy_actions.move, enemy_actions.move, enemy_actions.move);
+            // Debug modes
+            planned_action = enemy_actions.none;
         }
+        
         if (planned_action == enemy_actions.weak) {
             vulnerable = true;
             can_move = false;
@@ -437,15 +510,13 @@ if (global.time_stopped) {
     shaded_red = true;
     alarm[6] = 15;
     vulnerable = false;
-    if (healthbar.cur_pips &gt; 0) {
-        healthbar.cur_pips -= 1;
-    } else if (healthbar2.cur_pips &gt; 0) {
-        healthbar2.cur_pips -= 1;
-        if (healthbar2.cur_pips &lt; 1) {
+    if (healthbars[bar_index].cur_pips &gt; 0) {
+        healthbars[bar_index].cur_pips -= 1;
+    } else {
+        if (++bar_index == array_length_1d(healthbars)) {
             alive = false;
             alarm[7] = room_speed * 2;
             effect_create_above(ef_explosion, x, y - 200, 2, c_white);
-            alarm[1] = 1.5 * room_speed;
         }
     }
 } else {

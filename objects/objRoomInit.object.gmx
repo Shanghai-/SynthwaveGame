@@ -50,10 +50,11 @@ instance_create(player_spot.x, player_spot.y, objPlayer);
 objPlayer.spot_index = 0;
 player_spot.occupied = true;
 
-var enemy_spot = global.spot_array[5];
+var enemy_spot = global.spot_array[global.num_spots - 1];
 instance_create(enemy_spot.x, enemy_spot.y, objEnemy);
-objEnemy.spot_index = 5;
+objEnemy.spot_index = global.num_spots - 1;
 objEnemy.player = objPlayer;
+objEnemy.difficulty = global.difficulty;
 enemy_spot.occupied = true;
 
 audio_stop_all();

@@ -313,7 +313,7 @@ beat = beat mod 4;
     audio_play_sound(gameSong, 0, true);
     alarm[4] = global.quarter_note;
     with(instance_find(objEnemy, 0)) {
-        alarm[4] = (global.bps / 4) * room_speed;
+        alarm[4] = global.quarter_note;
     }
 }
 </string>
