@@ -32,7 +32,6 @@ depth = -2;
 moving_left = false;
 moving_right = false;
 dodging = false;
-hurt = false;
 spot_index = 0;
 next_spot_index = 0;
 can_attack = true;
@@ -74,7 +73,6 @@ shaded_red = false;
 shaded_bluegreen = false;
 alive = true;
 shutdown_shader_object = instance_create(0, 0, objShutdownShader);
-
 
 </string>
           </argument>
@@ -480,10 +478,13 @@ if (!moving_left &amp;&amp; !moving_right) {
         image_index = 4;
         alarm[0] = global.quarter_note;
         alarm[5] = global.quarter_note;
-        var hitspace = global.spot_array[spot_index + (range * attack_direction)];
-        hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
-        hurtbox.blockable = true;
-        wait_for_beat = true;
+        var attack_location = spot_index + (range * attack_direction);
+        if (attack_location &gt;= 0 &amp;&amp; attack_location &lt; global.num_spots) {
+            var hitspace = global.spot_array[spot_index + (range * attack_direction)];
+            hurtbox = instance_create(hitspace.x, hitspace.y, objHurtboxPlayer);
+            hurtbox.blockable = true;
+            wait_for_beat = true;
+        }
     } else if (right_down) {
         next_spot_index = spot_index;
         if (shift_down &amp;&amp; spot_index &lt; global.num_spots - 2 
