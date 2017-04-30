@@ -30,7 +30,10 @@ global.btn_y = 580;
 global.btn_offset = 70;
 global.btn_txt_color = c_white;
 
-global.bg_tri_color = make_color_rgb(244, 74, 147);
+global.slider_x = room_width - (room_width / 5);
+global.slider_y = 580;
+global.slider_offset = 100;
+
 global.sel_tri_color = make_color_rgb(58, 204, 225);
 global.min_ptime = 4.0;
 global.max_ptime = 8.0;

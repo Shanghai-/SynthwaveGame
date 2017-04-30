@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>myColor = c_white;
 
-bar_left = room_width / 2 - 200;
-bar_right = room_width / 2 + 200;
+bar_left = global.slider_x - 200;
+bar_right = global.slider_x + 200;
 </string>
           </argument>
         </arguments>
@@ -54,11 +54,12 @@ bar_right = room_width / 2 + 200;
             <string>draw_set_color(myColor);
 draw_set_font(fntBttn);
 draw_set_halign(fa_center);
-draw_text(room_width / 2, 430, "Music Volume");
+draw_text(x, y, "Music Volume");
 draw_set_color(make_color_rgb(91, 158, 165));
-draw_roundrect_ext(bar_left, 508, bar_right, 512, 4, 4, false);
+draw_roundrect_ext(bar_left, y + 70, bar_right, y + 74, 4, 4, false);
 draw_set_color(myColor);
-draw_circle(bar_left + global.music_volume * 4, 510, 8, false);
+draw_roundrect_ext(bar_left, y + 70, bar_left + global.music_volume * 4, y + 74, 4, 4, false);
+draw_circle(bar_left + global.music_volume * 4, y + 72, 8, false);
 </string>
           </argument>
         </arguments>
