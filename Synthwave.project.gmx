@@ -36,6 +36,9 @@
     <sprite>sprites\sprLaserLong</sprite>
     <sprite>sprites\sprSkyBomb</sprite>
     <sprite>sprites\sprSoloGlow</sprite>
+    <sprite>sprites\sprMashText</sprite>
+    <sprite>sprites\sprMashSpace</sprite>
+    <sprite>sprites\sprMenuTri</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\cyber_city</background>
@@ -59,6 +62,7 @@
   </shaders>
   <fonts name="fonts">
     <font>fonts\fntBttn</font>
+    <font>fonts\fntLazer</font>
   </fonts>
   <objects name="objects">
     <object>objects\objPlayer</object>
@@ -72,15 +76,17 @@
     <object>objects\objRoundText</object>
     <objects name="Menu">
       <object>objects\btnPlay</object>
+      <object>objects\btnControls</object>
+      <object>objects\btnOptions</object>
+      <object>objects\btnExit</object>
       <object>objects\btnMusicVol</object>
       <object>objects\btnSFXVol</object>
       <object>objects\btnBack</object>
-      <object>objects\btnOptions</object>
-      <object>objects\btnControls</object>
-      <object>objects\btnExit</object>
-      <object>objects\objMenuTriangle</object>
+      <object>objects\objMenuSelector</object>
       <object>objects\objOptionsTriangle</object>
       <object>objects\objAnyKey</object>
+      <object>objects\objTri</object>
+      <object>objects\objMovingPoint</object>
     </objects>
     <object>objects\objGameOverMessage</object>
     <object>objects\objYouWinMessage</object>
@@ -90,6 +96,8 @@
     <object>objects\objEnemy</object>
     <object>objects\objSkyBomb</object>
     <object>objects\objWeakAttack</object>
+    <object>objects\objMashDirections</object>
+    <object>objects\objFightText</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmMainMenu</room>

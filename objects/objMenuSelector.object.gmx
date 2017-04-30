@@ -25,8 +25,39 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>sel = noone;
-selected = false;
+            <string>global.btn_x = room_width - (room_width / 12);
+global.btn_y = 580;
+global.btn_offset = 70;
+global.btn_txt_color = c_white;
+
+global.bg_tri_color = make_color_rgb(244, 74, 147);
+global.sel_tri_color = make_color_rgb(58, 204, 225);
+global.min_ptime = 4.0;
+global.max_ptime = 8.0;
+global.max_pdist = 16;
+
+global.music_volume = 100;
+global.sfx_volume = 100;
+
+if (!audio_is_playing(menuTheme)) {
+    audio_stop_all();
+    audio_play_sound(menuTheme, 1, true);
+}
+
+x = global.btn_x + 32;
+btn_idx = 0;
+
+btn_types[0] = btnPlay;
+btn_types[1] = btnControls;
+btn_types[2] = btnOptions;
+btn_types[3] = btnExit;
+
+num_buttons = array_length_1d(btn_types);
+
+for (var i = 0; i &lt; num_buttons; i++) {
+    buttons[i] = instance_create(global.btn_x, 
+        global.btn_y + (global.btn_offset * i), btn_types[i]);
+}
 </string>
           </argument>
         </arguments>
@@ -49,70 +80,51 @@ selected = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (selected &amp;&amp; sel == noone) {
-    sel = instance_create(x, y, objTri);
-    with(sel) {
-        color = global.sel_tri_color;
-        depth = -10;
-        p1 = instance_create(x - 30, y, objMovingPoint);
-        p2 = instance_create(x - 290, y + 30, objMovingPoint);
-        p3 = instance_create(x + 40, y + 80, objMovingPoint);
+            <string>var up_down = keyboard_check_pressed(vk_up);
+var down_down = keyboard_check_pressed(vk_down);
+var select_down = keyboard_check_pressed(vk_space) || keyboard_check_pressed(vk_enter);
+
+if (select_down) {
+    switch (btn_idx) {
+        case 0:
+            global.difficulty = 0;
+            room_goto(rmEasy);
+            break;
+        case 1:
+            room_goto(rmControls);
+            break;
+        case 2:
+            room_goto(rmOptions);
+            break;
+        case 3:
+            game_end();
+            break;
     }
-} else if (!selected &amp;&amp; sel != noone) {
-    with(sel) {
-        instance_destroy();
-    }
-    sel = noone;
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_set_font(fntBttn);
-draw_set_halign(fa_right);
-draw_set_color(global.btn_txt_color);
-draw_text(x, y, "Controls");
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_sprite(sprMenuTri, 1, x + 20, y - 10);
+
+if (up_down &amp;&amp; !down_down) {
+    with (buttons[btn_idx]) {
+        selected = false;
+    }
+    btn_idx -= 1;
+    if (btn_idx == -1) {
+        btn_idx = num_buttons - 1;
+    }
+    with (buttons[btn_idx]) {
+        selected = true;
+    }
+} else if (down_down &amp;&amp; !up_down) {
+    with (buttons[btn_idx]) {
+        selected = false;
+    }
+    btn_idx += 1;
+    if (btn_idx == num_buttons) {
+        btn_idx = 0;
+    }
+    with (buttons[btn_idx]) {
+        selected = true;
+    }
+}
 </string>
           </argument>
         </arguments>

@@ -25,7 +25,45 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>myColor = c_white;
+            <string>sel = noone;
+selected = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (selected &amp;&amp; sel == noone) {
+    sel = instance_create(x, y, objTri);
+    with(sel) {
+        color = global.sel_tri_color;
+        depth = -10;
+        p1 = instance_create(x - 330, y, objMovingPoint);
+        p2 = instance_create(x - 350, y + 80, objMovingPoint);
+        p3 = instance_create(x + 20, y + 38, objMovingPoint);
+    }
+} else if (!selected &amp;&amp; sel != noone) {
+    with(sel) {
+        instance_destroy();
+    }
+    sel = noone;
+}
 </string>
           </argument>
         </arguments>
@@ -48,10 +86,33 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(myColor);
-draw_set_font(fntBttn);
-draw_set_halign(fa_center);
-draw_text(room_width / 2, 460, "Play Game");
+            <string>draw_set_font(fntBttn);
+draw_set_halign(fa_right);
+draw_set_color(global.btn_txt_color);
+draw_text(x, y, "Play Game");
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_sprite(sprMenuTri, 0, x + 10, y);
 </string>
           </argument>
         </arguments>

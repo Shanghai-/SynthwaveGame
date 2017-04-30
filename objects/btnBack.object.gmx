@@ -51,7 +51,7 @@
             <string>draw_set_color(myColor);
 draw_set_font(fntBttn);
 draw_set_halign(fa_center);
-draw_text(room_width / 2, 630, "Back");
+draw_text(room_width - (room_width / 4), 830, "Back");
 </string>
           </argument>
         </arguments>

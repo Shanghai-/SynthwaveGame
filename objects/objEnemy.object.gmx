@@ -81,6 +81,7 @@ if (global.difficulty == 1) {
         text_spr = sprHealthText;
     }
     healthbars[0] = healthbar;
+    num_healthbars = 1;
 }
 
 if (global.difficulty == 2) {
@@ -107,6 +108,7 @@ if (global.difficulty == 2) {
         draw_bar_text = false;
     }
     healthbars[1] = healthbar2;
+    num_healthbars = 2;
 }
 
 if (global.difficulty == 3) {
@@ -131,7 +133,8 @@ if (global.difficulty == 3) {
         text_spr = sprHealthText;
         draw_bar_text = false;
     }
-    healthbars[1] = healthbar;
+    healthbars[1] = healthbar2;
+    num_healthbars = 2;
 }
 /*
 healthbar3 = instance_create(10, 10, objBar);
@@ -517,11 +520,12 @@ if (vulnerable || !other.blockable) {
     shaded_red = true;
     alarm[6] = 15;
     vulnerable = false;
-    if (healthbars[bar_index].cur_pips &gt; 0) {
+    if (healthbars[bar_index].cur_pips &gt; 1) {
         healthbars[bar_index].cur_pips -= 1;
     } else {
+        healthbars[bar_index].cur_pips -= 1;
         bar_index++;
-        if (bar_index &gt;= array_length_1d(healthbars)) {
+        if (bar_index &gt;= num_healthbars) {
             alive = false;
             alarm[7] = room_speed * 2;
             effect_create_above(ef_explosion, x, y - 200, 2, c_white);

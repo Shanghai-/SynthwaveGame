@@ -25,40 +25,58 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>scrGlobalVars();
+            <string>x_i = x;
+y_i = y;
 
-global.particle_system = part_system_create();
-global.time_stopped = true;
-var spot_queue = ds_priority_create();
-with (objSpot) {
-    show_debug_message(self.id);
-    show_debug_message(x);
-    ds_priority_add(spot_queue, self.id, x);
+var angle = random_range(0, 259);
+x_t = x_i + lengthdir_x(global.max_pdist, angle);
+y_t = y_i + lengthdir_y(global.max_pdist, angle);
+
+pspeed = random_range(global.min_ptime, global.max_ptime);
+dx = (x_t - x_i) / pspeed;
+dy = (y_t - y_i) / pspeed;
+
+dist = point_distance(x_i, y_i, x_t, y_t);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (point_distance(x, y, x_i, y_i) &gt;= dist) {
+    var temp_x = x_i;
+    var temp_y = y_i;
+    x_i = x_t;
+    y_i = y_t;
+    x_t = temp_x;
+    y_t = temp_y;
+    
+   pspeed = random_range(global.min_ptime, global.max_ptime);
+    dx = (x_t - x_i) / pspeed;
+    dy = (y_t - y_i) / pspeed;
+    //dx = -dx;
+    //dy = -dy;
 }
 
-var spot_array; 
-var i;
-for (i = 0; !ds_priority_empty(spot_queue); i += 1) {
-    spot_array[i] = ds_priority_delete_min(spot_queue);
-}
-
-global.spot_array = spot_array;
-global.num_spots = array_length_1d(spot_array);
-
-var player_spot = global.spot_array[0];
-instance_create(player_spot.x, player_spot.y, objPlayer);
-objPlayer.spot_index = 0;
-player_spot.occupied = true;
-
-var enemy_spot = global.spot_array[global.num_spots - 1];
-instance_create(enemy_spot.x, enemy_spot.y, objEnemy);
-objEnemy.spot_index = global.num_spots - 1;
-objEnemy.player = objPlayer;
-objEnemy.difficulty = global.difficulty;
-enemy_spot.occupied = true;
-
-audio_stop_all();
-instance_create(-200, room_height / 2, objRoundText);
+x += dx; //* delta_time;
+y += dy; //* delta_time;
 </string>
           </argument>
         </arguments>

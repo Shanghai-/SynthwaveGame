@@ -310,6 +310,9 @@ beat = beat mod 4;
     image_index = 0;
     state = player_state.idle;
     wait_for_beat = false;
+    with(instance_find(objMashDirections, 0)) {
+        instance_destroy();
+    }
     audio_stop_all();
     audio_play_sound(gameSong, 0, true);
     alarm[4] = global.quarter_note;
